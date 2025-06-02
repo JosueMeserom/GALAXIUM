@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Silbar</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_8.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_8.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_8.html');">Borrar datos guardados</a>
+	</div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Silbar</h1>
+	<p>Silbas una melodía nerviosa, esperando calmar al monstruo con música. Para tu sorpresa, sus ojos se entrecierran. Parece… disfrutarla.</p>
+	<p>Pero entonces, se pone a danzar. Con cada paso, la tierra tiembla. Su alegría aumenta… hasta que te pisa por accidente durante un giro particularmente entusiasta. Moriste dando un concierto improvisado. Noble, aunque inútil.</p>
+	<p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

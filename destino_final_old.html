@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¡Victoria! - Galaxium</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/terminal.css">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        // Verificar que se hayan presionado todos los botones rojos
+        var boton1 = localStorage.getItem('galaxium_boton1') === 'true';
+        var boton2 = localStorage.getItem('galaxium_boton2') === 'true';
+        var boton3 = localStorage.getItem('galaxium_boton3') === 'true';
+        var boton4 = localStorage.getItem('galaxium_boton4') === 'true';
+
+        if (!(boton1 && boton2 && boton3 && boton4)) {
+            // Si no se han presionado todos los botones, redirigir según última página
+            var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+            if (!ultimaPagina) {
+                window.location.href = "index.html?redirect=true";
+            } else {
+                window.location.href = ultimaPagina;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="title">GALAXIUM</div>
+    
+    <div class="content">
+        <h2 style="color: #00ff00; text-align: center; margin-bottom: 30px;">¡HAS CONSEGUIDO SALIR!</h2>
+        
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px;">
+            Desde luego ha sido una aventura emocionante.
+        </p>
+        
+        <p style="text-align: center; margin-bottom: 20px;">
+            De parte de <strong>Josué Fernández</strong>: felicidades, espero que no se te haya hecho muy pesado.
+        </p>
+        
+        <p style="text-align: center; margin-bottom: 20px;">
+            Hazme saber si te ha gustado (o si no te ha gustado, también).
+        </p>
+        
+        <p style="text-align: center; margin-bottom: 30px;">
+            Siempre puedes decidir volver...
+        </p>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <p style="font-style: italic; color: #888;">
+                "En el vasto cosmos de posibilidades, has encontrado tu camino de regreso.<br>
+                Pero recuerda: cada final es también un nuevo comienzo."
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <p style="color: #00ff00;">
+                ★ ★ ★ MISIÓN COMPLETADA ★ ★ ★
+            </p>
+        </div>
+        
+        <div class="button-container">
+            <button onclick="
+                // Resetear todos los datos como en tiempo_agotado.html
+                var keys = Object.keys(localStorage);
+                for (var i = 0; i < keys.length; i++) {
+                    if (keys[i].startsWith('galaxium_')) {
+                        localStorage.removeItem(keys[i]);
+                    }
+                }
+                // Ir a index.html para empezar de nuevo
+                window.location.href = 'index.html';
+            ">Ponerse el casco de nuevo</button>
+        </div>
+    </div>
+</body>
+</html>

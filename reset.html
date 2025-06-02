@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resetear Partida</title>
+    <meta charset="UTF-8">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        }
+        // Para reset.html no redirigimos aunque ultimaPagina sea diferente
+        // porque el reset se puede acceder desde cualquier página
+    </script>
+    <link rel="stylesheet" href="css/terminal.css">
+    <script>
+		// Confirmar reset
+		function resetear() {
+			// Borrar solo datos de Galaxium (todos los que empiecen por "galaxium_")
+			var keys = Object.keys(localStorage);
+			for (var i = 0; i < keys.length; i++) {
+				if (keys[i].startsWith('galaxium_')) {
+					localStorage.removeItem(keys[i]);
+				}
+			}
+			alert("Partida reiniciada. Serás enviado a la introducción.");
+			window.location.href = "index.html";
+		}
+		function cancelar() {
+			// Si vienes de notas.html, vuelve a notas.html
+			if (localStorage.getItem('galaxium_vieneDeNotas') === 'true') {
+				localStorage.removeItem('galaxium_vieneDeNotas'); // Limpiar la marca
+				window.location.href = 'notas.html';
+			} else {
+				// Si no, usa la lógica normal
+				var ultima = localStorage.getItem('galaxium_ultimaPagina') || 'initia_superficie.html';
+				window.location.href = ultima;
+			}
+		}
+    </script>
+</head>
+<body>
+    <h1>¿Seguro que quieres resetear la partida?</h1>
+	<p>
+		Se borrarán todos los datos guardados, incluidas tus notas.
+	</p>
+    <button onclick="resetear()">Sí, resetear</button>
+    <button onclick="cancelar()">No, volver al juego</button>
+</body>
+</html>

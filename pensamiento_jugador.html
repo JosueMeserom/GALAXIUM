@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pensamiento del jugador</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/index.css">
+	<script>
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "pensamiento_jugador.html") {
+			// Si hay partida pero no tenías que venir aquí, ir a la página guardada
+			window.location.href = ultimaPagina;
+		} else {
+			// Sí tenías que venir aquí, verificar si es la primera vez
+			if (!localStorage.getItem('galaxium_yaVisitePensamiento')) {
+				// Primera vez - no hacer nada más y quedarse en esta página; se marcará que ya lo visitaste al clicar el botón inferior
+			} else {
+				// No es la primera vez - ir directamente a Initia
+				localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html');
+				window.location.href = "initia_superficie.html";
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="title">GALAXIUM</div>
+	
+	<div class="description">
+		<p>
+			¿Qué ha pasado?
+		<p>
+			Parece que, al acabar el tiempo, el sistema no ha logrado cerrar la partida bien, y en su lugar se ha reiniciado todo el progreso. 
+		</p>
+		<p>
+			Si cada vez que el tiempo llegue a 0 va a ocurrir esto... ¡No podrás salir del juego! ¡Estás en un bucle temporal!
+		</p>
+		<p>
+			¿Quizás necesitas llegar al "destino final" para que la partida acabe definitivamente?
+		</p>
+	</div>
+	
+	<a href="initia_superficie.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html'); localStorage.setItem('galaxium_yaVisitePensamiento', 'true'); ">Ahora empieza la aventura de verdad</a>
+</body>
+</html>

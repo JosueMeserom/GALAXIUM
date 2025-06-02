@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tormentae</title>
+    <link rel="stylesheet" href="css/tormentae.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "tormentae_superficie.html" && ultimaPagina !== "espacio.html") {
+            // Si hay partida pero no es esta página ni viene del espacio, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_superficie.html');">Borrar datos guardados</a>
+    </div>
+
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Planeta Tormentae</h1>
+    <p>El planeta está envuelto en una tempestad constante: viento feroz, lluvias intensas y relámpagos que iluminan el cielo oscuro.</p>
+    <p>Curiosamente, el aire es respirable y la lluvia es potable, pero la atmósfera es peligrosa por un tornado supermasivo cercano que amenaza con destruir todo. Irónicamente el núcleo de Tormentae es sólido y seguramente menos expuesto que la superficie, aún con los nubarrones que hay entre vosotros, aunque el viaje hasta allí seguramente llevará un tiempo considerable.</p>
+    <p>Aun así, tu valentía te empuja a hacer locuras. ¿Qué es lo peor que puede pasar? También podrías acercarte al pequeño satélite artificial, puede que albergue algo interesante, aunque también requerirá tiempo llegar hasta él.</p>
+    <p><a href="espacio.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);">Salir al espacio</a></p>
+    <p><a href="tormentae_tornado.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_tornado.html');">Meterse en el tornado</a></p>
+    <p><a href="tormentae_nucleo.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nucleo.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);">Bajar al núcleo del planeta a través de las nubes de gas</a></p>
+    <p><a href="tormentae_satelite.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_satelite.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);">Ir al satélite artificial</a></p>
+</body>
+</html>

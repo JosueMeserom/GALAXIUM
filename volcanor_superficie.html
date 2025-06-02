@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Volcanor</title>
+    <link rel="stylesheet" href="css/volcanor.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "volcanor_superficie.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_superficie.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Planeta Volcanor</h1>
+    <p>Tu nave ha aterrizado con dificultad en una gran planicie de roca endurecida. Alrededor, el paisaje es un mar de lava burbujeante, con ríos incandescentes que se cruzan entre estructuras volcánicas activas.</p>
+    <p>Pequeños géiseres de magma erupcionan de forma intermitente, iluminando el cielo rojizo con destellos peligrosos. Sólo esta zona parece segura para caminar.</p>
+    <p>Frente a ti hay un antiguo terminal incrustado en una roca. Su pantalla aún parpadea, mostrando una advertencia críptica:</p>
+    <blockquote>
+        <em>“No viajar en tiempos pares.”</em><br>
+        <strong>Satélite:</strong> Galería<br>
+        <strong>Camino 1:</strong> Textos antiguos<br>
+        <strong>Camino 2:</strong> Textos alienígenas<br>
+        <strong>Camino 3:</strong> Mensaje alienígena
+    </blockquote>
+
+    <p>Desde tu posición, puedes distinguir tres caminos serpenteantes que se alejan de la planicie. Al final del primer camino, se vislumbran edificios robustos con estructuras reforzadas que parecen estar específicamente preparados para resistir las condiciones extremas del planeta. El segundo camino también conduce a construcciones similares, con muros gruesos y ventanas protegidas que sugieren una ingeniería avanzada contra el calor volcánico. El tercer camino, sin embargo, termina en algo completamente diferente: una especie de cúpula de cristal brillante que refleja la luz de la lava circundante como un faro en la distancia.</p>
+    <p>Además, tu radar detecta un satélite orbitando Volcanor, formado por obsidiana negra y diamante puro que reflejan la luz con destellos hipnóticos. Este satélite es famoso por albergar una valiosa galería que contiene piezas artísticas únicas provenientes de toda la galaxia, un museo flotante en el vacío.</p>
+    <p>Es probable que, al volver de cualquier destino, hayas gastado cierto tiempo. De hecho ir al satélite te va a costar un poco.</p>
+    
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='espacio.html'; return false;">Salir al espacio</a></p>
+    <p><a href="#" onclick="verificarTiempoPar('volcanor_zona_1.html'); return false;">Camino 1: Edificios reforzados</a></p>
+    <p><a href="#" onclick="verificarTiempoPar('volcanor_zona_2.html'); return false;">Camino 2: Construcciones protegidas</a></p>
+    <p><a href="#" onclick="verificarTiempoPar('volcanor_zona_3.html'); return false;">Camino 3: Cúpula de cristal</a></p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_satelite.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_satelite.html'; return false;">Ir al satélite</a></p>
+
+    <script>
+        function verificarTiempoPar(destino) {
+            var tiempo = parseInt(localStorage.getItem('galaxium_unidadesTiempo') || '0');
+            if (tiempo % 2 === 0) {
+                // Tiempo par - ir a lava
+                localStorage.setItem('galaxium_ultimaPagina', 'volcanor_lava.html');
+                location.href = 'volcanor_lava.html';
+            } else {
+                // Tiempo impar - ir al destino normal
+                localStorage.setItem('galaxium_ultimaPagina', destino);
+                location.href = destino;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gelora</title>
+    <link rel="stylesheet" href="css/gelora.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+
+        // Verificar si llegó por teletransportador
+        var llegadaPorTeletransportador = localStorage.getItem("galaxium_llegadaPorTeletransportador") === 'true';
+
+        // Verificar ventisca según la nueva lógica:
+        // - Tiempo 5: Ventisca en superficie (siempre mortal)
+        // - Tiempo 6 por nave: Ventisca en atmósfera (mortal al aterrizar)
+        // - Tiempo 6 por teletransportador: Superficie segura (ventisca arriba)
+        if (tiempo === 5) {
+            window.location.href = "gelora_ventisca.html";
+        } else if (tiempo === 6 && ultimaPagina === "espacio.html") {
+            window.location.href = "gelora_ventisca.html";
+        }
+
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "gelora_superficie.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+
+        // Limpiar la variable temporal después de todas las verificaciones
+        if (llegadaPorTeletransportador) {
+            localStorage.removeItem("galaxium_llegadaPorTeletransportador");
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_superficie.html');">Borrar datos guardados</a>
+    </div>
+
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Planeta Gelora</h1>
+
+    <!-- Párrafo original (aterrizaje normal) -->
+    <p id="texto_nave">Según los escáneres infrarrojos, solo una pequeña zona firme y sólida permite un aterrizaje seguro. El resto del terreno está formado por un abismo de cristales de agua congelada, que puede ceder bajo tu peso. Además, una estructura circular en el suelo permanece fría y poco funcional; el panel que la controla ha sido arrancado por alguna ventisca, por lo que sugiere su estado.</p>
+
+    <!-- Párrafo teletransportado (oculto por defecto) -->
+    <p id="texto_teletransportado" style="display: none;">Acabas de materializarte sobre la superficie helada, aún con la sensación de zumbido en los oídos y un frío penetrante que se filtra a través de tu traje. El teletransportador que te ha traído hasta aquí parpadea brevemente antes de apagarse, cubierto por una fina capa de escarcha. El aire es tan frío que puedes ver tu respiración condensarse instantáneamente. El resto del terreno está formado por un abismo de cristales de agua congelada, que puede ceder bajo tu peso.</p>
+
+    <p>Al salir, observas tres caminos posibles para explorar: izquierda, centro y derecha. Sin embargo, las lecturas son poco claras y parecen igual de arriesgados. La ruta derecha parece ser la más segura... aunque no lo sabes aún.</p>
+    <p>Además, a lo lejos, una cueva con la entrada casi completamente congelada llama la atención.</p>
+
+    <p id="gelora_cueva_desc" style="display:none;">
+        La órbita cercana al sol ha hecho que el hielo se derrita parcialmente, y la cueva antes congelada ahora es accesible.
+    </p>
+
+    <p><a href="espacio.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);">Salir al espacio</a></p>
+    <p><a href="gelora_caida.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_caida.html');">Camino izquierda</a></p>
+    <p><a href="gelora_caida.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_caida.html');">Camino centro</a></p>
+    <p><a href="gelora_derecha.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_derecha.html');">Camino derecha</a></p>
+    <p id="gelora_cueva" style="display:none;"><a href="gelora_cueva.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_cueva.html');">Entrada a la cueva congelada</a>
+    </p>
+
+    <script>
+        // Ejecutar después de que la página cargue completamente
+        window.addEventListener('DOMContentLoaded', function() {
+            // DEBUG: Mostrar variables en consola
+            console.log('=== DEBUG GELORA SUPERFICIE ===');
+            console.log('Tiempo:', localStorage.getItem('galaxium_unidadesTiempo'));
+            console.log('Última página:', localStorage.getItem('galaxium_ultimaPagina'));
+            console.log('usadoTeletransportadorAGelora:', localStorage.getItem('galaxium_usadoTeletransportadorAGelora'));
+            console.log('llegadaPorTeletransportador:', localStorage.getItem('galaxium_llegadaPorTeletransportador'));
+
+            // Verificar si llegó por teletransporte (usar la variable persistente)
+            var teleported = localStorage.getItem('galaxium_usadoTeletransportadorAGelora') === 'true';
+            console.log('Variable teleported:', teleported);
+
+            if (teleported) {
+                console.log('MOSTRANDO TEXTO DE TELETRANSPORTE');
+                // Mostrar texto de teletransporte y ocultar texto de nave
+                document.getElementById('texto_nave').style.display = 'none';
+                document.getElementById('texto_teletransportado').style.display = 'block';
+            } else {
+                console.log('MOSTRANDO TEXTO DE NAVE');
+            }
+
+            // Mostrar párrafos y enlaces en función del tiempo
+            let tiempo = parseInt(localStorage.getItem('galaxium_unidadesTiempo') || '0');
+            console.log('Tiempo parseado:', tiempo);
+
+            if (tiempo === 6) {
+                console.log('TIEMPO ES 6 - MOSTRANDO CUEVA');
+                document.getElementById('gelora_cueva_desc').style.display = 'block';
+                document.getElementById('gelora_cueva').style.display = 'block';
+            } else {
+                console.log('TIEMPO NO ES 6 - NO MOSTRANDO CUEVA');
+            }
+            console.log('=== FIN DEBUG ===');
+        });
+    </script>
+</body>
+</html>

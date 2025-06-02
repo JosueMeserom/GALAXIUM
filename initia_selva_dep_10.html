@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Quedarte quieto</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_10.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud"><div id="contador">Tiempo transcurrido: 0</div><a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_10.html');">Notas del explorador</a><a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_10.html');">Borrar datos guardados</a></div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Quedarte quieto</h1>
+	<p>Te congelas. Tal vez, si no te mueves, no te verá. Como con los T-Rex de las películas.</p>
+	<p>Durante varios segundos, parece funcionar. Pero luego el depredador te rodea, te huele… y finalmente decide que, si no te mueves, es porque eres comida gratis. Te arranca de un bocado, como quien arranca una fruta madura.</p><p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

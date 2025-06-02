@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GALAXIUM</title>
+    <meta charset="UTF-8">
+    <link rel="StyleSheet" href="css/Index.css" type="text/css">
+    <script>
+    // Verificar si viene de una redirección por intento de trampa
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('redirect') === 'true') {
+        alert("No me seas tramposillo... ;)");
+        // Limpiar el parámetro de la URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Este script se ejecuta al cargar la página y carga siempre la última página a la que se accedió en el juego, guardada en localStorage
+    var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+    if (ultimaPagina) {
+        // Si hay partida guardada, vamos donde nos quedamos
+        window.location.href = ultimaPagina;
+    }
+    // Si no hay partida, se queda en esta página esperando al jugador
+    </script>
+</head>
+<body>
+
+<div class="title">GALAXIUM</div>
+
+<div class="description">
+<!-- Aquí puedes escribir el texto de introducción que explica qué es Galaxium en el universo del juego -->
+<p>
+    Te han aceptado para una prueba del nuevo juego de realidad virtual, GALAXIUM, antes de su lanzamiento. Estás en las oficinas de la empresa desarrolladora.
+</p>
+<p>
+    Te explican que en el juego serás un astronauta explorador del espacio, con una pequeña nave personal, en un sistema solar diminuto donde el tamaño de los planetas se mide en pocos kilómetros. Deberás investigarlos, recabar pistas, y resolver acertijos desperdigados en los planetas, para llegar finalmente al sitio conocido como "destino final", momento en el cual se acabará el juego.
+</p>
+<p>
+    Con tu nave puedes viajar entre planetas, pero no podrás usarla mucho una vez dentro de alguno, ya que hay muchos caminos estrechos. Sin embargo, posees un brazalete con la capacidad de teletransportar la nave a tu localización si te encontrases en un lugar amplio o en el espacio.
+</p> 
+<p>
+    Como es una prueba de demostración, solamente tendrás 7 unidades de tiempo para explorar, ya que al finalizar el tiempo también se acabará el juego. Te dicen que es prácticamente imposible llegar al "destino final" dentro de esas 7 unidades de tiempo, por lo que seguro que te quedarás con ganas de más.
+</p>
+<p>
+    La última advertencia que te dan es que los planetas tienen ciertos peligros, y como cortesía, si "mueres" en el juego, se reiniciará y volverás al inicio sin tiempo gastado. La anticipación te come, estás deseando probarlo...
+</p>
+</div>
+<a href="initia_superficie.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', '0');">Ponerte el casco</a>
+</body>
+</html>

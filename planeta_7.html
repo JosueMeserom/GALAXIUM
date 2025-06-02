@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planeta 7</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/quantum.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "planeta_7.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Planeta 7</h1>
+    <p>Ya no estás en tu nave. De alguna manera, jugando con las reglas de la física de este extraño universo, has llegado al séptimo planeta del sistema. La transición ha sido tan sutil que apenas te has dado cuenta del cambio, como si la realidad misma se hubiera reconfigurado a tu alrededor.</p>
+    <p>Te encuentras flotando en el espacio, pero de manera imposible, puedes respirar y moverte como si estuvieras en un ambiente controlado. Frente a ti se extiende un planeta extraordinario, envuelto en una atmósfera nubosa que cambia constantemente de color. Las nubes no son estáticas; se mueven en patrones hipnóticos que parecen seguir leyes físicas completamente diferentes a las que conoces.</p>
+    <p>La atmósfera del planeta pulsa con tonalidades que van desde azules profundos hasta violetas brillantes, con destellos ocasionales de verde esmeralda y cyan que atraviesan las formaciones nubosas como relámpagos silenciosos. Es imposible ver qué hay en la superficie a través de esta densa capa atmosférica, pero hay algo magnético en este mundo que te atrae irresistiblemente.</p>
+    
+    <img src="img/quantum.png" alt="Planeta 7 - El planeta cuántico" style="max-width: 80%; height: auto;">
+    
+    <p>La gravedad del planeta comienza a ejercer su influencia sobre ti. No es una fuerza violenta, sino más bien como una invitación gentil pero inevitable. Sientes cómo tu cuerpo es atraído lentamente hacia la superficie, y por más que intentas resistirte o cambiar de dirección, la atracción gravitacional es imparable. Es como si el planeta mismo hubiera decidido que es hora de que lo visites.</p>
+    <p>A medida que te acercas a las nubes, puedes sentir una energía extraña emanando del planeta. No es amenazante, pero definitivamente es diferente a todo lo que has experimentado en los otros mundos de este sistema solar. Hay una sensación de que este lugar opera bajo reglas completamente distintas, donde lo imposible se vuelve posible y donde la lógica convencional no tiene cabida.</p>
+
+    <p><a href="planeta_7_dentro.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7_dentro.html');">Seguir descendiendo</a></p>
+</body>
+</html>

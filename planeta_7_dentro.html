@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planeta 7 - Interior</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/quantum.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "planeta_7_dentro.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7_dentro.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7_dentro.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Planeta 7 - Interior</h1>
+    <p>Al atravesar las nubes atmosféricas, una sensación de calma y paz absolutas te envuelve como un abrazo cálido. Es como si todas las preocupaciones, el estrés y la urgencia de tu aventura se desvanecieran instantáneamente. Este lugar emana una tranquilidad tan profunda que podrías quedarte aquí para siempre, flotando en esta serenidad eterna.</p>
+    <p>La superficie del planeta es sorprendentemente acogedora. El paisaje se extiende en suaves colinas cubiertas de una hierba que brilla con una luz tenue y reconfortante. No hay vientos fuertes ni sonidos perturbadores, solo un silencio pacífico que invita a la contemplación. El aire es perfecto, ni demasiado frío ni demasiado cálido, y cada respiración te llena de una sensación de bienestar.</p>
+    <p>Sin embargo, a pesar de la tentación de quedarte en este paraíso, sabes que tienes que escapar del juego. Hay algo más allá de esta tranquilidad que te llama, una necesidad de completar tu viaje y encontrar la verdadera salida.</p>
+    
+    <p>Frente a ti se alza una casita muy acogedora, construida con materiales que parecen brillar suavemente con luz propia. Su diseño es simple pero perfecto, con ventanas que emiten una luz dorada y cálida, y una puerta que parece invitarte a entrar. Todo en esta estructura transmite una sensación de hogar y seguridad.</p>
+    
+    <p>Justo enfrente de la casa, hay un cartel de madera muy rudimentario que contrasta curiosamente con la perfección del entorno. El cartel parece haber sido tallado a mano con herramientas básicas, y en él puedes leer:</p>
+    
+    <p style="background-color: rgba(186, 104, 200, 0.1); padding: 20px; border-left: 4px solid #ba68c8; font-style: italic; margin: 20px 0;">
+        "Pues bueno, ya que has llegado hasta aquí, te lo diré directamente, aunque seguramente ya lo hayas deducido: tienes que presionar los cuatro botones rojos dentro del mismo bucle (no vale en diferentes, se resetean) para forzar una redirección al "destino final". ¿Lo teníamos planeado desde el principio? ¿O realmente un bug produjo un fallo en la secuencia de salida del juego y esto es simplemente el protocolo de emergencia? Quién sabe, yo solamente soy una IA que quiere ayudar. Va, no te cortes. Entra. Y recuerda: entrar o salir de aquí no cuesta tiempo."
+    </p>
+
+    <p><a href="planeta_7_casa.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7_casa.html');">Entrar en la casa</a></p>
+    <p><a href="espacio.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'espacio.html');">Salir al espacio</a></p>
+
+    <script>
+        // Activar pista solo después de que la página se haya cargado completamente
+        localStorage.setItem('galaxium_pista_planeta7', 'true');
+    </script>
+</body>
+</html>

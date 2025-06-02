@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Okèanos - Ascensor subacuático</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/okeanos.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "okeanos_ascensor.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+		
+		// Activar pista de marea baja al llegar aquí
+		localStorage.setItem('galaxium_pista_mareaBaja', 'true');
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_ascensor.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_ascensor.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Okèanos - Ascensor subacuático</h1>
+	<p>Siguiendo el sendero resbaladizo que la marea baja ha revelado, llegas hasta la extraña estructura que sobresale del fondo marino. Efectivamente, se trata de un ascensor, pero no uno cualquiera: está completamente sellado y diseñado para funcionar bajo el agua. Las paredes son de un cristal transparente increíblemente resistente que te permite ver el océano que te rodea en todas direcciones.</p>
+	<p>Al entrar, las puertas se cierran automáticamente con un siseo hidráulico, y el ascensor comienza a descender lentamente hacia las profundidades. A través de las paredes de cristal, puedes observar cómo el agua ácida de Okèanos fluye a tu alrededor, creando patrones hipnóticos mientras la luz del sol se desvanece gradualmente. Peces extraños con escamas metálicas nadan cerca, aparentemente inmunes a la acidez del agua.</p>
+	<p>Finalmente, el ascensor se detiene en una cámara subterránea completamente seca y herméticamente sellada. El lugar está iluminado por luces de emergencia que parpadean débilmente, y el aire tiene un olor a ozono y metal oxidado. En el centro de la habitación, sobre un pedestal de metal pulido, se encuentra un <span style="color: red;">botón rojo</span> brillante del tamaño de tu puño. Está rodeado por un anillo de luces que parpadean en secuencia, y emite un zumbido casi imperceptible. Todo en este lugar parece haber sido diseñado para dirigir tu atención hacia este botón. Claramente, es algo importante.</p>
+	
+	<p><a href="#" onclick="
+		if (localStorage.getItem('galaxium_boton3') === 'true') {
+			alert('¡El botón ya se encuentra pulsado!');
+		} else {
+			localStorage.setItem('galaxium_boton3', 'true');
+			// Verificar si todos los botones están presionados
+			var boton1 = localStorage.getItem('galaxium_boton1') === 'true';
+			var boton2 = localStorage.getItem('galaxium_boton2') === 'true';
+			var boton3 = localStorage.getItem('galaxium_boton3') === 'true';
+			var boton4 = localStorage.getItem('galaxium_boton4') === 'true';
+			if (boton1 && boton2 && boton3 && boton4) {
+				localStorage.setItem('galaxium_ultimaPagina', 'destino_final.html');
+				location.href = 'destino_final.html';
+			} else {
+				alert('¡Pulsado!');
+			}
+		}
+		return false;">Pulsar el <span style="color: red;">botón rojo</span></a></p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_superficie.html'); location.href='okeanos_superficie.html'; return false;">Volver al ascensor y subir a la superficie</a></p>
+</body>
+</html>

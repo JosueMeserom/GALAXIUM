@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Gritar</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_4.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_4.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_4.html');">Borrar datos guardados</a>
+	</div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Gritar</h1>
+	<p>Lanzas un grito tan agudo y aterrador como puedes. El eco retumba por la selva. Algunos pájaros huyen en estampida aérea.</p>
+	<p>El depredador se sobresalta… y luego ruge contigo, en lo que parece un concurso involuntario de gritos. Lamentablemente, su rugido incluye esporas paralizantes. Te desplomas, y te devora con la tranquilidad de quien aprecia un plato exótico.</p>
+	<p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gelora - Caída al abismo</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/gelora.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "gelora_caida.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_caida.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_caida.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Gelora - Caída al abismo</h1>
+	<p>Das tu primer paso con confianza hacia el camino elegido, pero inmediatamente te das cuenta de que has cometido un error fatal. Lo que parecía ser terreno sólido resulta ser una fina capa de hielo que se extiende sobre un abismo profundo. El suelo cede bajo tu peso con un crujido ominoso que resuena en el aire helado.</p>
+	<p>Caes en picada hacia las profundidades del planeta, y mientras desciendes, puedes ver las paredes del abismo brillando con un resplandor azulado. Están completamente cubiertas de cristales de agua congelada de todos los tamaños, desde pequeñas formaciones como agujas hasta enormes estalactitas que cuelgan amenazadoramente. La belleza del lugar es hipnótica, pero también mortal.</p>
+	<p>El viento silba a tu alrededor mientras aceleras hacia el fondo. Los cristales reflejan la poca luz que se filtra desde la superficie, creando un caleidoscopio de destellos azules y blancos que danzan ante tus ojos. Intentas activar cualquier sistema de emergencia de tu traje, pero la caída es demasiado rápida y el abismo demasiado profundo.</p>
+	<p>Los cristales se vuelven más densos y afilados a medida que te acercas al fondo. Algunos sobresalen de las paredes como lanzas de hielo, y puedes escuchar el sonido de tu traje rozando contra ellos mientras caes. El frío se intensifica con cada metro que desciendes, y tu respiración se vuelve visible en pequeñas nubes de vapor que se congelan instantáneamente.</p>
+	<p>Tu último pensamiento, antes del impacto final contra el lecho de cristales afilados, es que las lecturas de la superficie eran correctas: este camino era efectivamente arriesgado.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','muerte.html'); location.href='muerte.html'; return false;">Continuar</a></p>
+</body>
+</html>

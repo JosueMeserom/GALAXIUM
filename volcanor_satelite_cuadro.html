@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Cuadro del satélite</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_satelite_cuadro.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_satelite_cuadro.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_satelite_cuadro.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Cuadro del satélite</h1>
+	<p>Después de una búsqueda más exhaustiva por los pasillos del museo, finalmente descubres una puerta que sí estaba desbloqueada, casi oculta en un rincón del edificio. Al abrirla, te encuentras con una pequeña sala de exposición que parece haber sido preservada especialmente para una sola pieza.</p>
+	<p>En el centro de la sala, iluminada por focos direccionales, hay una exposición con un cuadro extraño: letras en azul neón brillante sobre un fondo completamente negro. Las letras están dispuestas de manera aparentemente aleatoria, sin formar palabras reconocibles ni seguir ningún patrón obvio que puedas discernir.</p>
+	<p>La sala está en perfecto estado de conservación, y el cuadro parece ser una pieza importante de la colección del museo. Por sí solas, estas letras no parecen significar nada, pero intuyes que deben ser parte de algún código o mensaje más grande. Decides memorizarlas para futuras referencias.</p>
+	
+	<img src="img/cuadro1.png" alt="Cuadro encontrado en el satélite de Volcanor" style="border: 2px solid #ff7b00; margin: 20px auto; display: block; max-width: 90%; height: auto;">
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_satelite.html'); location.href='volcanor_satelite.html'; return false;">Volver al museo</a></p>
+
+	<script>
+		// Activar pista solo después de que la página se haya cargado completamente
+		localStorage.setItem('galaxium_pista_cuadro1', 'true');
+	</script>
+</body>
+</html>

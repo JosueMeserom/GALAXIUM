@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Cabaña en la selva</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "initia_selva_cabaña.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+		
+		// Función para manejar las letras ASIR
+		function presionarLetra(letra) {
+			var secuencia = localStorage.getItem('galaxium_secuenciaASIR') || '';
+			var objetivo = 'ASIR';
+
+			if (secuencia.length < objetivo.length && letra === objetivo[secuencia.length]) {
+				// Letra correcta
+				secuencia += letra;
+				localStorage.setItem('galaxium_secuenciaASIR', secuencia);
+
+				if (secuencia === objetivo) {
+					// Secuencia completa
+					localStorage.removeItem('galaxium_secuenciaASIR');
+					localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña_sotano.html');
+					window.location.href = 'initia_selva_cabaña_sotano.html';
+				}
+			} else {
+				// Letra incorrecta
+				localStorage.removeItem('galaxium_secuenciaASIR');
+				localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña_laser.html');
+				window.location.href = 'initia_selva_cabaña_laser.html';
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Initia - Cabaña en la selva</h1>
+	<p>La cabaña es una estructura rústica pero sólida, construida con troncos entrelazados y cubierta por un techo de hojas trenzadas que gotea ocasionalmente. Las paredes están cubiertas de musgo y enredaderas que parecen haber crecido como parte del diseño original. El interior es sorprendentemente espacioso, con un suelo de madera pulida que cruje suavemente bajo tus pasos.</p>
+	<p>Lo que más llama tu atención es un panel metálico empotrado en la pared del fondo, completamente fuera de lugar en este entorno natural. El panel tiene un teclado con todas las letras del alfabeto, cada una iluminada con una luz tenue. En la parte superior, un símbolo de advertencia triangular parpadea en rojo, grande y amenazante. Te preguntas si será buena idea tocar algo sin saber exactamente qué secuencia introducir.</p>
+	
+	<div class="planetas" style="text-align: center; margin: 20px 0;">
+		<a href="#" onclick="presionarLetra('A'); return false;">A</a>
+		<a href="#" onclick="presionarLetra('B'); return false;">B</a>
+		<a href="#" onclick="presionarLetra('C'); return false;">C</a>
+		<a href="#" onclick="presionarLetra('D'); return false;">D</a>
+		<a href="#" onclick="presionarLetra('E'); return false;">E</a>
+		<a href="#" onclick="presionarLetra('F'); return false;">F</a>
+		<a href="#" onclick="presionarLetra('G'); return false;">G</a>
+		<a href="#" onclick="presionarLetra('H'); return false;">H</a>
+		<a href="#" onclick="presionarLetra('I'); return false;">I</a>
+		<a href="#" onclick="presionarLetra('J'); return false;">J</a>
+		<a href="#" onclick="presionarLetra('K'); return false;">K</a>
+		<a href="#" onclick="presionarLetra('L'); return false;">L</a>
+		<a href="#" onclick="presionarLetra('M'); return false;">M</a>
+		<a href="#" onclick="presionarLetra('N'); return false;">N</a>
+		<a href="#" onclick="presionarLetra('Ñ'); return false;">Ñ</a>
+		<a href="#" onclick="presionarLetra('O'); return false;">O</a>
+		<a href="#" onclick="presionarLetra('P'); return false;">P</a>
+		<a href="#" onclick="presionarLetra('Q'); return false;">Q</a>
+		<a href="#" onclick="presionarLetra('R'); return false;">R</a>
+		<a href="#" onclick="presionarLetra('S'); return false;">S</a>
+		<a href="#" onclick="presionarLetra('T'); return false;">T</a>
+		<a href="#" onclick="presionarLetra('U'); return false;">U</a>
+		<a href="#" onclick="presionarLetra('V'); return false;">V</a>
+		<a href="#" onclick="presionarLetra('W'); return false;">W</a>
+		<a href="#" onclick="presionarLetra('X'); return false;">X</a>
+		<a href="#" onclick="presionarLetra('Y'); return false;">Y</a>
+		<a href="#" onclick="presionarLetra('Z'); return false;">Z</a>
+	</div>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_claro.html'); location.href='initia_selva_claro.html'; return false;">Volver al claro de la selva</a></p>
+</body>
+</html>

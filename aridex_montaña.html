@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Las primeras letras de los 4 elementos de la lista no ordenada en el calor indican el número de la respuesta correcta de los 20 -->
+	<title>Aridex - Montaña</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_montaña.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_montaña.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_montaña.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Montaña</h1>
+	<p>El ascenso por los peldaños labrados en la roca es agotador pero fascinante. Cada escalón parece haber sido tallado con precisión milimétrica por alguna civilización antigua, creando una escalera que serpentea por la cara vertical de la montaña. A medida que subes, el aire se vuelve más fino y el viento más intenso, pero la determinación te impulsa hacia adelante.</p>
+	<p>Al llegar a la cima, te encuentras con una vista absolutamente impresionante que desafía toda lógica. Desde esta altura, puedes contemplar todo el planeta Aridex extendiéndose hasta el horizonte: un vasto yermo estéril de rocas rojizas y arena dorada que se pierde en la distancia. Es irónico que un paisaje tan desolado y aparentemente sin vida pueda resultar tan hermoso y majestuoso desde las alturas. El contraste entre la belleza de la vista y la esterilidad del terreno es casi hipnótico.</p>
+	<p>Sin embargo, aparte de la vista espectacular, no parece haber nada más de utilidad en la cima. No hay estructuras, artefactos o pistas adicionales. Es simplemente un mirador natural que ofrece una perspectiva única del planeta. Seguramente el viaje de vuelta también te hará gastar tiempo valioso.</p>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='aridex_superficie.html'; return false;">Descender de la montaña</a></p>
+</body>
+</html>

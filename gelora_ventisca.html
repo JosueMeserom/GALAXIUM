@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gelora - Ventisca</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/gelora.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "gelora_ventisca.html" && ultimaPagina !== "gelora_superficie.html") {
+			// Si hay partida pero no es esta página ni viene de superficie (por ventisca), ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_ventisca.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_ventisca.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Gelora - Ventisca</h1>
+	<p>Sin previo aviso, una ventisca feroz se desata a tu alrededor. Los vientos helados golpean con una fuerza descomunal, llevando consigo cristales de hielo que cortan como cuchillas. La visibilidad se reduce a prácticamente cero en cuestión de segundos, y el mundo se convierte en un torbellino blanco y gris.</p>
+	<p>La tormenta parece haberte atrapado en el momento más inoportuno. Los vientos son tan intensos que te resulta imposible mantener el equilibrio, y cada paso que das te aleja más de cualquier punto de referencia. El frío penetrante atraviesa tu traje espacial como si fuera papel, y puedes sentir cómo la temperatura de tu cuerpo desciende peligrosamente.</p>
+	<p>Los cristales de hielo se acumulan rápidamente sobre tu visor, bloqueando tu visión por completo. Tu sistema de calefacción lucha desesperadamente contra el frío extremo, pero es una batalla perdida. El viento aúlla con una intensidad ensordecedora, ahogando cualquier sonido que puedas hacer.</p>
+	<p>Gradualmente, tus movimientos se vuelven más lentos y torpes. El frío entumece tus extremidades hasta que ya no puedes sentirlas. Tu respiración se vuelve laboriosa, y cada inhalación llena tus pulmones de aire helado que quema como fuego. La ventisca continúa su danza mortal a tu alrededor, implacable e inescapable.</p>
+	<p>Tu último pensamiento, antes de que la conciencia se desvanezca en la blancura infinita, es que deberías haber prestado más atención a los patrones climáticos y atmosféricos del planeta.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','muerte.html'); location.href='muerte.html'; return false;">Continuar</a></p>
+</body>
+</html>

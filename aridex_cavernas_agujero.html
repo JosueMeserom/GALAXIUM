@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Agujero en las cavernas</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_cavernas_agujero.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+
+		// Activar pista del formulario al llegar aquí
+		localStorage.setItem('galaxium_pista_formulario', 'true');
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas_agujero.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas_agujero.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Agujero en las cavernas</h1>
+	<p>Al tocar la celda azul, el suelo bajo tus pies se desploma sin previo aviso. Caes a través de un agujero que se abre como una trampa perfectamente diseñada, aterrizando en una cámara más profunda con un golpe seco que resuena por las paredes metálicas.</p>
+	<p>Te encuentras en lo que parece ser un nivel inferior del laboratorio, con equipos aún más antiguos y misteriosos. Las luces aquí son más tenues, y el aire tiene un olor a circuitos quemados y tiempo. No hay manera obvia de volver por donde viniste; el agujero se ha cerrado automáticamente sobre tu cabeza.</p>
+	<p>Entre los escombros y cables sueltos, encuentras un terminal que parecía estar encendido. Al tocarlo con curiosidad, su pantalla se ilumina con un brillo verdoso, revelando un mensaje que parpadea insistentemente: "Formulario 4 7 2 10". El texto permanece en pantalla durante unos segundos antes de desvanecerse, pero has logrado memorizarlo.</p>
+	<p>Afortunadamente, mientras exploras la cámara en busca de una salida, encuentras un conducto de ventilación en una de las paredes. Al treparlo, descubres que se convierte en un camino serpenteante que te lleva de vuelta a la zona de las cavernas donde estabas antes. El recorrido es agotador y consume tiempo valioso.</p>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_cavernas.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='aridex_cavernas.html'; return false;">Trepar por el conducto de ventilación</a></p>
+</body>
+</html>

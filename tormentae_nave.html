@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tormentae - Nave estrellada</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/tormentae.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+	<style>
+		.formulario-container {
+			background-color: #2a1810;
+			border: 2px solid #ff7b00;
+			border-radius: 8px;
+			padding: 20px;
+			margin: 20px auto;
+			max-width: 500px;
+		}
+		.formulario-container form {
+			color: #ffcc80;
+		}
+		.formulario-container input[type="text"] {
+			background-color: #1a1000;
+			border: 1px solid #ff7b00;
+			color: #ffcc80;
+			padding: 5px;
+			margin: 5px 0;
+			border-radius: 3px;
+		}
+		.formulario-container input[type="submit"] {
+			background-color: #ff7b00;
+			color: #1a1000;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-weight: bold;
+			margin-top: 10px;
+		}
+		.formulario-container input[type="submit"]:hover {
+			background-color: #ffcc80;
+		}
+	</style>
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "tormentae_nave.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Tormentae - Interior de la nave</h1>
+	<p>El interior de la nave estrellada es sorprendentemente espacioso y bien conservado. Los pasillos principales mantienen una iluminación de emergencia tenue pero funcional, creando un ambiente misterioso con sombras que danzan en las paredes metálicas. El diseño interior sugiere que esta era una nave de exploración avanzada, con tecnología claramente superior a la tuya.</p>
+	<p>Los pasillos están revestidos con paneles de un material que parece absorber el sonido, creando un silencio casi inquietante. Ocasionalmente puedes escuchar el zumbido distante de sistemas automatizados que aún funcionan después de todos estos años.</p>
+	<p>En la zona central de la nave, descubres lo que claramente era el centro de comando principal. Una terminal grande domina el espacio, con múltiples pantallas y controles que aún muestran signos de actividad. La terminal principal presenta un formulario de datos que parece haber sido el último registro activo antes del accidente.</p>
+
+	<div class="formulario-container">
+		<form action="registrardatos.php" method="post" onsubmit="return false;">
+			Identificación de misión:
+			<br><input type="text" name="mision" value="explorador" size="20">
+			<br>Origen planetario:
+			<br><input type="text" name="origen" value="fuente" size="24">
+			<br>Coordenadas de destino:
+			<br><input type="text" name="coordenadas" value="nebulosa" size="18">
+			<br>Propósito de exploración:
+			<br><input type="text" name="proposito" value="mira" size="22">
+			<br>Estado de combustible:
+			<br><input type="text" name="combustible" value="cristales" size="16">
+			<br>Tripulación a bordo:
+			<br><input type="text" name="tripulacion" value="ausente" size="20">
+			<br>Protocolo de emergencia:
+			<br><input type="text" name="emergencia" value="código" size="25">
+			<br>Sistemas operativos:
+			<br><input type="text" name="sistemas" value="parcial" size="19">
+			<br>Comunicaciones externas:
+			<br><input type="text" name="comunicaciones" value="silencio" size="23">
+			<br>Recursos disponibles:
+			<br><input type="text" name="recursos" value="montaña" size="21">
+			<br>Tiempo estimado de misión:
+			<br><input type="text" name="tiempo" value="indefinido" size="17">
+			<br>Prioridad de objetivos:
+			<br><input type="text" name="prioridad" value="máxima" size="20">
+			<br>Estado de navegación:
+			<br><input type="text" name="navegacion" value="perdido" size="18">
+			<br>Observaciones finales:
+			<br><input type="text" name="observaciones" value="tormenta" size="26">
+			<br><input type="submit" value="Enviar" onclick="alert('Sistema no operativo'); return false;">
+		</form>
+	</div>
+
+	<p><a href="tormentae_nave_cabina.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave_cabina.html');">Ir al puente de mando</a></p>
+	<p><a href="tormentae_nucleo.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nucleo.html');">Salir de la nave</a></p>
+</body>
+</html>

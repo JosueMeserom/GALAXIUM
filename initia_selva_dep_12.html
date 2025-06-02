@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Empezar a llorar</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_12.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud"><div id="contador">Tiempo transcurrido: 0</div><a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_12.html');">Notas del explorador</a><a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_12.html');">Borrar datos guardados</a></div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Empezar a llorar</h1>
+	<p>Te derrumbas en llanto, como si tu tristeza fuera un escudo. El depredador se detiene, desconcertado.</p>
+	<p>Durante unos segundos, parece contemplar tu miseria con compasión… pero luego bosteza, te olfatea y decide terminar con la escena. Moriste llorando, pero al menos fuiste una tragedia conmovedora en la dieta vegetal.</p><p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

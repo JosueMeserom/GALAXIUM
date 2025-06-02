@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Soplar</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_11.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud"><div id="contador">Tiempo transcurrido: 0</div><a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_11.html');">Notas del explorador</a><a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_11.html');">Borrar datos guardados</a></div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Soplar</h1>
+	<p>Soplas fuerte, como si con eso pudieras dispersar su follaje o asustarlo. Lo único que logras es que parte de sus hojas se agiten… y liberen polen.</p>
+	<p>Este polen resulta ser alucinógeno. Empiezas a ver todo doble, luego triple, y finalmente ni sabes qué está pasando. En tu confusión, corres directo contra un árbol. Mueres creyendo que eras tú quien tenía raíces.</p><p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

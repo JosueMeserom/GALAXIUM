@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Callejón sin salida</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_laberinto_incorrecto.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_incorrecto.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_incorrecto.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Callejón sin salida</h1>
+	<p>Después de seis movimientos a través de los serpenteantes pasillos del laberinto, te encuentras frente a una pared sólida de piedra que bloquea completamente tu camino. Has llegado a un callejón sin salida. El musgo luminiscente aquí es más tenue, como si incluso la naturaleza supiera que este no es el lugar correcto.</p>
+	<p>Has perdido tiempo valioso en esta exploración infructuosa, y ahora tienes que hacer todo el camino de vuelta por los mismos pasillos que recorriste para llegar hasta aquí. La frustración se mezcla con la determinación mientras te preparas para regresar al punto de partida y intentarlo de nuevo, esperando que la próxima vez tengas más suerte o mejor información.</p>
+	
+	<p><a href="#" onclick="localStorage.removeItem('galaxium_movimientosLaberinto'); localStorage.setItem('galaxium_ultimaPagina','aridex_subsuelo.html'); location.href='aridex_subsuelo.html'; return false;">Regresar al inicio del laberinto</a></p>
+</body>
+</html>

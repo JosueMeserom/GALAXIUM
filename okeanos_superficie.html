@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Planeta Okèanos</title>
+    <link rel="stylesheet" href="css/okeanos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "okeanos_superficie.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_superficie.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        var tiempo = parseInt(localStorage.getItem('galaxium_unidadesTiempo') || '0');
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + tiempo;
+    </script>
+
+    <h1>Planeta Okèanos</h1>
+    <p id="texto_teleportado" style="display: none;">
+    Acabas de materializarte sobre el helipuerto, aún con la sensación de zumbido en los oídos y un leve cosquilleo en los dedos. El panel del teletransportador que te ha traído hasta aquí parpadea brevemente y luego se apaga por completo, como si su energía se hubiese agotado.</p>
+    <p id="texto_tornado" style="display: none;">
+    Tras aferrarte al ojo del tornado más imponente de Tormentae, has sido lanzado a través del cielo como un proyectil de carne y metal. Contra toda lógica —y varias leyes de la física— aterrizas en el helipuerto de Okèanos, envuelto en vapor y electricidad estática. Tus botas resbalan por el suelo mojado, pero logras mantener el equilibrio. El aire huele a ozono, y tu pulso sigue acelerado. No hay señales del tornado, como si jamás hubiese existido, solo el mar interminable rodeándote en todas direcciones.</p>
+    <p id="texto_teleportado_tornado" style="display: none;">Llamas con tu brazalete a tu nave, transportándose contigo al puerto, para salir al espacio si lo necesitas. Frente a ti se extiende la inmensa superficie acuática del planeta. El mar parece infinito, reflejando un cielo perpetuamente nublado, como si nada hubiese cambiado desde hace siglos.
+    </p>
+    <p id="texto_nave">Tu nave ha aterrizado en el único helipuerto visible sobre la inmensa superficie acuática del planeta. El mar parece infinito, reflejando un cielo perpetuamente nublado, como si nada hubiese cambiado desde hace siglos.</p>
+    <p>Hay un extraño olor a metal en el aire. Aunque no hay viento, sientes una incomodidad persistente al mirar el agua...
+    <p id="texto_panel">En el centro del helipuerto hay una estructura circular incrustada en el suelo, con un panel de control oxidado al lado. Presionar sus botones no parece hacer nada, aunque su forma sugiere una función perdida.</p>
+    <p>Junto al borde, una tabla de surf marcada como "resistente a la corrosión" reposa tranquilamente. Su utilidad es cuestionable sin olas.</p>
+    <p id="marea_baja" style="display: none;">
+    Ahora mismo, la marea ha bajado de forma excepcional, revelando un sendero estrecho y resbaladizo que se extiende bajo el agua hasta una extraña estructura sumergida. Desde aquí, parece un ascensor metálico.
+    </p>
+    <p id="marea_alta" style="display: none;">
+    Sin embargo, el oleaje se ha vuelto más fuerte. Las corrientes son intensas, y la tabla de surf parece estar en su elemento. Quizás puedas usarla para alcanzar alguna zona inaccesible.
+    </p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', tiempo + 1); location.href='espacio.html'; return false;">Salir al espacio</a></p>
+    <p><a href="okeanos_sumergirse.html" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_sumergirse.html'); localStorage.setItem('galaxium_unidadesTiempo', tiempo + 1);">Sumergirse en el agua</a></p>
+
+    <!-- MAREA BAJA: Tiempo <= 1 -->
+    <p id="enlace_marea_baja" style="display: none;">
+        <a href="okeanos_ascensor.html" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_ascensor.html');">Caminar hasta la estructura sumergida</a>
+    </p>
+
+    <!-- MAREA ALTA: Tiempo == 5 -->
+    <p id="enlace_marea_alta" style="display: none;">
+        <a href="okeanos_surfear.html" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_surfear.html');">Surfear con la marea</a>
+    </p>
+
+    <script>
+        var teleported = localStorage.getItem('galaxium_usadoTeletransportadorAOkeanos') === 'true';
+
+        var tornado = localStorage.getItem('galaxium_usadoTornadoAOkeanos') === 'true';
+
+        // Mostrar/ocultar secciones condicionales según el tiempo
+        if (teleported) {
+            document.getElementById('texto_nave').style.display = 'none';
+            document.getElementById('texto_panel').style.display = 'none';
+            document.getElementById('texto_teleportado').style.display = 'block';
+            document.getElementById('texto_teleportado_tornado').style.display = 'block';
+            localStorage.removeItem('galaxium_usadoTornadoAOkeanos');
+        }
+        if (tornado) {
+            document.getElementById('texto_nave').style.display = 'none';
+            document.getElementById('texto_panel').style.display = 'none';
+            document.getElementById('texto_tornado').style.display = 'block';
+            document.getElementById('texto_teleportado_tornado').style.display = 'block';
+            localStorage.removeItem('galaxium_usadoTeletransportadorAOkeanos');
+        }
+        if (tiempo <= 1) {
+            document.getElementById('marea_baja').style.display = 'block';
+            document.getElementById('enlace_marea_baja').style.display = 'block';
+        }
+
+        if (tiempo === 5) {
+            document.getElementById('marea_alta').style.display = 'block';
+            document.getElementById('enlace_marea_alta').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¡Victoria! - GALAXIUM</title>
+    <meta charset="UTF-8">
+    <link rel="StyleSheet" href="css/Index.css" type="text/css">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        // Verificar que se hayan presionado todos los botones rojos
+        var boton1 = localStorage.getItem('galaxium_boton1') === 'true';
+        var boton2 = localStorage.getItem('galaxium_boton2') === 'true';
+        var boton3 = localStorage.getItem('galaxium_boton3') === 'true';
+        var boton4 = localStorage.getItem('galaxium_boton4') === 'true';
+
+        if (!(boton1 && boton2 && boton3 && boton4)) {
+            // Si no se han presionado todos los botones, redirigir según última página
+            var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+            if (!ultimaPagina) {
+                window.location.href = "index.html?redirect=true";
+            } else {
+                window.location.href = ultimaPagina;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="title">GALAXIUM</div>
+
+<div class="description">
+<p>
+    ¡Has conseguido salir! Desde luego ha sido una aventura emocionante.
+</p>
+<p>
+    De parte de <strong>Josué Fernández</strong>: felicidades, espero que no se te haya hecho muy pesado.
+</p>
+<p>
+    Hazme saber si te ha gustado (o si no te ha gustado, también).
+</p>
+<p>
+    Siempre puedes decidir volver...
+</p>
+<p style="font-style: italic; text-align: center; margin-top: 30px;">
+    "En el vasto cosmos de posibilidades, has encontrado tu camino de regreso.<br>
+    Pero recuerda: cada final es también un nuevo comienzo."
+</p>
+<p style="text-align: center; margin-top: 20px; font-weight: bold;">
+    ★ ★ ★ MISIÓN COMPLETADA ★ ★ ★
+</p>
+</div>
+<a href="#" onclick="
+    // Reiniciar como otro bucle más (igual que tiempo_agotado.html)
+    // Resetear tiempo
+    localStorage.setItem('galaxium_unidadesTiempo', '0');
+    // Resetear depredador (vuelve a aparecer)
+    localStorage.removeItem('galaxium_depredadorFuera');
+    // Resetear teletransportes y tornado (vuelven a estar disponibles)
+    localStorage.removeItem('galaxium_usadoTeletransportadorAOkeanos');
+    localStorage.removeItem('galaxium_usadoTeletransportadorAGelora');
+    localStorage.removeItem('galaxium_usadoTornadoAOkeanos');
+    // Resetear todos los botones automáticamente
+    for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        if (key && key.startsWith('galaxium_boton')) {
+            localStorage.removeItem(key);
+            i--; // Decrementar porque removeItem cambia el índice
+        }
+    }
+    // Resetear secuencias de puzzles
+    localStorage.removeItem('galaxium_secuenciaPanelCabana');
+    localStorage.removeItem('galaxium_movimientosLaberinto');
+    // Siempre ir directamente a Initia (no verificar primera vez)
+    localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html');
+    window.location.href = 'initia_superficie.html';
+    return false;">Ponerse el casco de nuevo</a>
+</body>
+</html>

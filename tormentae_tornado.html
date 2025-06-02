@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tormentae - Tornado</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/tormentae.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "tormentae_tornado.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_tornado.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_tornado.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Tormentae - Tornado</h1>
+	<p>Con una mezcla de valentía y temeridad, decides acercarte al tornado supermasivo. Al principio, los vientos son manejables, pero a medida que te aproximas al centro de la tormenta, la fuerza del tornado se vuelve absolutamente abrumadora. Los vientos alcanzan velocidades imposibles, y antes de que puedas reaccionar, eres completamente absorbido por el vórtice.</p>
+	<p>El mundo se convierte en un torbellino de colores y sonidos ensordecedores. Tu cuerpo gira sin control a velocidades vertiginosas, perdiendo completamente la orientación. Los relámpagos iluminan el interior del tornado con destellos cegadores, y puedes sentir cómo la presión atmosférica cambia drásticamente a tu alrededor.</p>
+	<p>De manera completamente inverosímil, el tornado no te destruye. En lugar de eso, actúa como un portal natural, transportándote a través del espacio de una forma que desafía toda lógica física. La experiencia es tan surrealista que comienzas a dudar de si esto es real o si has perdido la conciencia.</p>
+	<p>Después de lo que parece una eternidad de giros y vueltas, el tornado te expulsa con una fuerza tremenda. Caes desde una altura considerable, pero afortunadamente aterrizas en algo que amortigua tu caída. Al recuperar la compostura y mirar a tu alrededor, te das cuenta de que has sido transportado de manera inexplicable a la superficie de Okèanos, el planeta oceánico que siempre parece estar cerca en este extraño sistema solar.</p>
+	<p>El contraste es impactante: de la tormenta feroz de Tormentae has pasado a las aguas relativamente calmadas de Okèanos. Tu traje espacial ha resistido milagrosamente el viaje, aunque puedes sentir que algunos sistemas necesitarán recalibración.</p>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); localStorage.removeItem('galaxium_usadoTeletransportadorAOkeanos'); localStorage.removeItem('galaxium_usadoTornadoAOkeanos'); location.href='okeanos_superficie.html'; return false;">Continuar</a></p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Segunda zona</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_zona_2.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_2.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_2.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Segunda zona</h1>
+	<p>El segundo camino te conduce a un edificio más grande y rectangular, con una arquitectura que inmediatamente te recuerda a una escuela o centro educativo. Al entrar, tus sospechas se confirman: hay un montón de mesas dispuestas en filas ordenadas, cada una con su correspondiente silla, como si fuera un aula gigantesca. Sin embargo, todo lo que ves escrito en las pizarras y papeles esparcidos está en un idioma completamente incomprensible, lleno de símbolos extraños y caracteres que no reconoces.</p>
+	<p>Las mesas están hechas del mismo material resistente al calor que los edificios, y muchas de ellas tienen grabados y anotaciones que parecen ser ejercicios o tareas de estudiantes. El ambiente es extrañamente nostálgico, como si pudieras sentir el eco de voces jóvenes que una vez llenaron este espacio con preguntas y risas.</p>
+	<p>Lo que más llama tu atención es una mesa en particular, situada cerca de una ventana que da al paisaje volcánico. Esta mesa está especialmente iluminada por la luz natural que se filtra a través del cristal protector, y sobre su superficie hay un dibujo muy detallado que parece haber sido hecho a mano con gran cuidado. El dibujo muestra una imagen que contrasta completamente con el ambiente volcánico del planeta:</p>
+	
+	<img src="img/arboles.png" alt="Dibujo encontrado en Volcanor" style="border: 2px solid #ff7b00; margin: 20px auto; display: block; max-width: 90%; height: auto;">
+	
+	<p>El dibujo es tan detallado y está tan bien conservado que parece casi fuera de lugar en este entorno educativo abandonado. Te preguntas qué significado podría tener para los antiguos habitantes de esta escuela volcánica.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_superficie.html'; return false;">Regresar a la superficie</a></p>
+
+	<script>
+		// Activar pista solo después de que la página se haya cargado completamente
+		localStorage.setItem('galaxium_pista_arboles', 'true');
+	</script>
+</body>
+</html>

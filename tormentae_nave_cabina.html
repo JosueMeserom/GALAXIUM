@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tormentae - Puente de mando</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/tormentae.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "tormentae_nave_cabina.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave_cabina.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave_cabina.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Tormentae - Puente de mando</h1>
+	<p>El puente de mando de la nave es impresionante, con una vista panorámica que ahora muestra las formaciones rocosas del núcleo de Tormentae. Los asientos del capitán y del copiloto están orientados hacia una serie de pantallas y controles que claramente representaban tecnología de vanguardia en su época.</p>
+	<p>En la silla del capitán, encuentras algo inesperadamente divertido: una fotografía enmarcada de lo que parece ser el anterior comandante de la nave. La imagen muestra a un alienígena con cuatro ojos y una sonrisa relajada, llevando lo que parece ser una máscara de gas de piloto como casco, pero decorada con pequeñas calcomanías de planetas y estrellas brillantes pegadas por todas partes. Está haciendo un gesto de "pulgar arriba" mientras al fondo se ve lo que claramente es una tormenta espacial peligrosa. Al reverso de la foto, alguien ha escrito con letra despreocupada: "Comandante Feldespato explorando otra 'zona segura' - ¡El peligro es solo una perspectiva!"</p>
+	<!-- Lo original:
+	En la silla del capitán, encuentras algo inesperadamente divertido: una fotografía enmarcada de lo que parece ser el anterior comandante de la nave. La imagen muestra a un alienígena con una expresión tremendamente seria y profesional, pero lleva puesto lo que claramente es un sombrero de fiesta de cumpleaños infantil, completo con pompón y todo. La contradicción entre su pose militar y el ridículo sombrero es tan absurda que no puedes evitar sonreír. Al reverso de la foto, alguien ha escrito con letra temblorosa: "Comandante Zephyr en su día libre - ¡Nunca olvidar mantener el sentido del humor!" -->
+	<p>Los controles del puente están mayormente inactivos, pero la estación del copiloto mantiene una pantalla encendida que reproduce continuamente un video en bucle. El video parece ser algún tipo de tutorial o demostración, mostrando una interfaz de usuario donde un cursor se posa específicamente sobre un elemento azul de la pantalla.</p>
+
+	<video controls autoplay loop muted style="width: 60%; max-width: 450px; height: auto; display: block; margin: 20px auto; border: 2px solid #f1c40f;">
+		<source src="vid/azul.mp4" type="video/mp4">
+		Tu navegador no soporta el elemento de video.
+	</video>
+
+	<p>El video es hipnótico en su simplicidad, mostrando el cursor realizando un pequeño movimiento preciso hasta posarse sobre el elemento azul. Hay algo en esa acción específica que sugiere que este vídeo podría contener información importante sobre el funcionamiento de algún sistema.</p>
+
+	<p><a href="tormentae_nave.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave.html');">Volver a los pasillos de la nave</a></p>
+
+	<script>
+		// Activar pista solo después de que la página se haya cargado completamente
+		localStorage.setItem('galaxium_pista_azul', 'true');
+	</script>
+</body>
+</html>

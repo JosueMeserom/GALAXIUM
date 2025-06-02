@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gelora - Cueva gélida</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/gelora.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "gelora_cueva.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_cueva.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_cueva.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Gelora - Cueva gélida</h1>
+	<p>La entrada a la cueva, ahora accesible gracias al deshielo parcial, te lleva a través de un túnel serpenteante hacia las profundidades del planeta helado. Las paredes están cubiertas de una capa gruesa de hielo que refleja la luz de tu linterna, creando patrones hipnóticos de luz azul y blanca. El aire es tan frío que puedes ver tu respiración formando pequeñas nubes que se congelan casi instantáneamente.</p>
+	<p>La cueva es mucho más grande de lo que esperabas. Los techos se elevan a alturas impresionantes, y puedes escuchar el eco de tus pasos resonando en la distancia. Estalactitas gigantescas cuelgan como dagas de hielo, y el suelo está cubierto por una capa resbaladiza de hielo pulido que hace que cada paso sea una aventura.</p>
+	<p>Al final de la gruta principal, descubres una sala circular que parece haber sido preservada especialmente por el frío extremo. En el centro de esta sala, como si fuera una escultura de museo, se encuentra un dinosaurio completamente hecho de hojas que han sido totalmente congeladas. La criatura está en una pose dinámica, como si hubiera sido sorprendida en pleno movimiento y luego instantáneamente preservada por el hielo. Las hojas mantienen su forma y color original, creando una obra de arte natural extraordinaria.</p>
+	<p>Junto al dinosaurio fosilizado, hay un cartel con un cómic dibujado a mano que cuenta una historia en tres viñetas: En la primera viñeta, se ve claramente un depredador feroz en medio de una selva densa. En la segunda viñeta, varios muñecos de nieve están aplaudiendo mientras el animal muestra una expresión de sorpresa y miedo. En la tercera y última viñeta, el depredador se aleja corriendo con una cara que expresa claramente su odio hacia el sonido de los aplausos.</p>
+	<p>Colgado en una pared de hielo cristalino, también puedes ver un cuadro misterioso que muestra letras en azul neón brillante sobre un fondo completamente negro. Las letras están dispuestas de manera aparentemente aleatoria, sin formar palabras reconocibles ni seguir ningún patrón obvio que puedas discernir:</p>
+	
+	<img src="img/cuadro2.png" alt="Cuadro encontrado en la cueva de Gelora" style="border: 2px solid #87ceeb; margin: 20px auto; display: block; max-width: 90%; height: auto;">
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','gelora_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='gelora_superficie.html'; return false;">Volver atrás</a></p>
+
+	<script>
+		// Activar pistas solo después de que la página se haya cargado completamente
+		// y todas las verificaciones hayan pasado
+		localStorage.setItem('galaxium_pista_depredador', 'true');
+		localStorage.setItem('galaxium_pista_cuadro2', 'true');
+	</script>
+</body>
+</html>

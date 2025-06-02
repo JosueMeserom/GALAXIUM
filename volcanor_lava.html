@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Lava</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_lava.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_lava.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_lava.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Chorro de lava</h1>
+	<p>Justo cuando te diriges hacia tu destino elegido, el suelo bajo tus pies comienza a temblar violentamente. Sin previo aviso, una fisura se abre directamente en tu camino y un chorro masivo de lava incandescente erupciona desde las profundidades del planeta con una fuerza descomunal.</p>
+	<p>El chorro de lava te golpea de lleno antes de que puedas siquiera reaccionar. El calor es tan intenso que tu traje espacial se desintegra instantáneamente, y tu cuerpo se vaporiza en cuestión de segundos. La erupción fue completamente repentina, una cruel demostración del poder destructivo de Volcanor.</p>
+	<p>Tu última visión es el cielo rojizo del planeta llenándose de cenizas volcánicas mientras tu conciencia se desvanece para siempre. El terminal en la superficie tenía razón: no era seguro viajar en tiempos pares.</p>
+	<p id="leccionTiempo">Has aprendido la lección: <strong>A partir de ahora, mientras revisas tus notas, podrás dejar que pase el tiempo.</strong></p>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_puedoPasarTiempo', 'true'); localStorage.setItem('galaxium_ultimaPagina','muerte.html'); location.href='muerte.html'; return false;">Continuar</a></p>
+
+	<script>
+		// Ocultar el párrafo de la lección si ya se activó anteriormente
+		if (localStorage.getItem('galaxium_puedoPasarTiempo') === 'true') {
+			document.getElementById('leccionTiempo').style.display = 'none';
+		}
+	</script>
+</body>
+</html>

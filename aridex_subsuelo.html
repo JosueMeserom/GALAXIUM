@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Subsuelo</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_subsuelo.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_subsuelo.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_subsuelo.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Subsuelo</h1>
+	<p>Desciendes por la escalera de metal oxidado, que cruje ominosamente bajo tu peso con cada paso. El aire se vuelve más fresco y húmedo a medida que te adentras en las profundidades, y pronto el sonido de tus pasos resuena en un espacio mucho más amplio de lo que esperabas.</p>
+	<p>Al llegar al fondo, te encuentras ante una vista impresionante: una zona que claramente parece ser un laberinto gigantesco. Muros de piedra gris se extienden en todas las direcciones, formando pasillos que desaparecen en la penumbra. La estructura es masiva, con corredores que parecen extenderse infinitamente hacia la oscuridad. Las paredes están cubiertas de un musgo luminiscente que proporciona una luz tenue pero suficiente para navegar. Tendrías que pensarte bien cómo seguir desde aquí.</p>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_laberinto.html'); location.href='aridex_laberinto.html'; return false;">Proceder al laberinto</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_superficie.html'); location.href='aridex_superficie.html'; return false;">Volver a la superficie</a></p>
+</body>
+</html>

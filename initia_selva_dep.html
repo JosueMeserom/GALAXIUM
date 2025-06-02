@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Depredador en la selva</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "initia_selva_dep.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Initia - Depredador en la selva</h1>
+	<p>El sendero se ensancha ligeramente y se convierte en un claro cubierto de hojarasca. El silencio es total. Ni pájaros, ni insectos. Solo tu respiración agitada.</p>
+	<p>Entonces lo oyes. Un crujido seco, como ramas quebrándose. Otro más. Y luego, algo se mueve entre los árboles. Muy lentamente. Muy grande.</p>
+	<p>De entre la maleza surge una figura inmensa: parece un dinosaurio, pero no uno cualquiera. Su cuerpo está formado por hojas trenzadas, tallos, enredaderas. Cada paso que da es un susurro vegetal, como si la selva misma lo hubiera creado para proteger su corazón.</p>
+	<p>Tiene ojos... verdes, brillantes, como los de un reptil gigantesco. Te atraviesan con una mirada antigua, paciente, depredadora. Y cuando abre su boca, ves una hilera de dientes imposiblemente afilados: parecen solo tallos cortados… pero sabes que podrían desgarrarte en un instante.</p>
+	<p>No se mueve más. Respira, o eso parece. Las hojas de su pecho se expanden y contraen como si imitara a un ser vivo.</p>
+	<p>No tienes tiempo para pensar. El miedo te paraliza por un instante. Debes actuar <strong>ya</strong>.</p>
+	<img src="img/depredador.png" alt="Depredador de la selva" style="max-width: 90%; max-height: 420px; height: auto;"> 
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_1.html'); location.href='initia_selva_dep_1.html'; return false;">Salir corriendo hacia delante</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_2.html'); location.href='initia_selva_dep_2.html'; return false;">Huir</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_3.html'); location.href='initia_selva_dep_3.html'; return false;">Andar lento</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_4.html'); location.href='initia_selva_dep_4.html'; return false;">Gritar</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_5.html'); location.href='initia_selva_dep_5.html'; return false;">Golpearle</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_6.html'); location.href='initia_selva_dep_6.html'; return false;">Intentar montarlo</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_7.html'); location.href='initia_selva_dep_7.html'; return false;">Dar palmas</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_8.html'); location.href='initia_selva_dep_8.html'; return false;">Silbar</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_9.html'); location.href='initia_selva_dep_9.html'; return false;">Arrojarle hojas</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_10.html'); location.href='initia_selva_dep_10.html'; return false;">Quedarte quieto</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_11.html'); location.href='initia_selva_dep_11.html'; return false;">Soplar</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_12.html'); location.href='initia_selva_dep_12.html'; return false;">Empezar a llorar</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_selva_dep_13.html'); location.href='initia_selva_dep_13.html'; return false;">Bailar</a></p>
+</body>
+</html>

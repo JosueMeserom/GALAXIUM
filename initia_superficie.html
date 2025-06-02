@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "initia_superficie.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+	<h1>Planeta Initia</h1>
+	<p>Te encuentras en un planeta familiar, con vegetación abundante, aire respirable y temperaturas agradables. Aquí comienza tu viaje.</p>
+	<p>Tu nave se encuentra aparcada frente a ti, ambos en una planicie bien iluminada. Por otro lado, dispones de dos caminos diferentes por los que explorar el planeta.</p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='espacio.html'; return false;">Salir al espacio</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_camino_selva.html'); location.href='initia_camino_selva.html'; return false;">Entrar en la selva frondosa</a>, por medio de un camino bien definido.</p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_lago.html'); location.href='initia_lago.html'; return false;">Ir hacia el gran lago</a>, que llama la atención por sus aguas azules y cristalinas.</p>
+	<!-- <img src="img/depredador.png" alt="Depredador de la selva" style="max-width: 90%; max-height: 420px; height: auto;"> -->
+</body>
+</html>

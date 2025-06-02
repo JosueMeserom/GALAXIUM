@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Okèanos - Surfeando</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/okeanos.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "okeanos_surfear.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+		
+		// Activar pista de surfear al llegar aquí
+		localStorage.setItem('galaxium_pista_surfear', 'true');
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_surfear.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_surfear.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Okèanos - Surfeando</h1>
+	<p>Con las olas alcanzando su punto máximo, decides aprovechar la tabla de surf "resistente a la corrosión" que encontraste en el helipuerto. Al principio, la idea de un astronauta surfeando en un océano ácido parece completamente absurda, pero sorprendentemente, la tabla cumple su promesa y resiste perfectamente la acidez del agua.</p>
+	<p>Te deslizas sobre las olas con una gracia inesperada, tu traje espacial brillando bajo la luz filtrada mientras navegas por las corrientes turbulentas. El viento salado golpea tu visor, y por un momento, casi olvidas que estás en una misión espacial. La experiencia es extrañamente liberadora: aquí estás, un explorador del cosmos, surfeando en un planeta alienígena como si fueras un surfista profesional en las costas de la Tierra.</p>
+	<p>Después de varios minutos de navegación emocionante, las corrientes te llevan hacia un islote diminuto que apenas sobresale del agua. Es tan pequeño que apenas hay espacio para ti y la tabla, pero es sólido y estable. Desde aquí, puedes ver que las corrientes han cambiado completamente, y no hay manera de regresar al helipuerto surfeando.</p>
+	
+	<video width="60%" height="auto" autoplay loop muted controls style="margin: 20px auto; border: 2px solid #4a90e2; display: block;">
+		<source src="vid/surfeando.mp4" type="video/mp4">
+		Tu navegador no soporta el elemento de video.
+	</video>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','okeanos_teletransporte.html'); location.href='okeanos_teletransporte.html'; return false;">Continuar hacia el islote</a></p>
+</body>
+</html>

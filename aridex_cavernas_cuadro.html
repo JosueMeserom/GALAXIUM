@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Cuadro en las cavernas</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_cavernas_cuadro.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+		
+		// Activar pista del cuadro al llegar aquí
+		localStorage.setItem('galaxium_pista_cuadro3', 'true');
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas_cuadro.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas_cuadro.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Cuadro en las cavernas</h1>
+	<p>Al hacer clic en el símbolo, la pantalla del panel se ilumina con un brillo intenso. Después de unos segundos de carga, aparece una imagen extraña: letras en azul neón brillante sobre un fondo completamente negro. Las letras están dispuestas de manera aparentemente aleatoria, sin formar palabras reconocibles ni seguir ningún patrón obvio.</p>
+	<p>La imagen permanece en pantalla durante varios minutos, como si el sistema quisiera asegurarse de que la has visto completamente. Por sí solas, estas letras no parecen significar nada, pero intuyes que deben ser parte de algún código o mensaje más grande. Decides memorizarlas para futuras referencias.</p>
+	
+	<img src="img/cuadro3.png" alt="Cuadro encontrado en Aridex" class="cuadro-aridex">
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_cavernas.html'); location.href='aridex_cavernas.html'; return false;">Volver a las cavernas</a></p>
+</body>
+</html>

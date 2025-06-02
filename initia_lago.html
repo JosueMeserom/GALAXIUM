@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Lago</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_lago.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_lago.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_lago.html');">Borrar datos guardados</a>
+	</div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	
+	<h1>Planeta Initia - Lago</h1>
+	<p>Las aguas del lago son sorprendentemente cristalinas, casi demasiado. Puedes ver peces de colores nadar entre piedras lisas, reflejando la luz como espejos vivos. Alrededor, los árboles se arquean sobre el agua como si quisieran mirarse a sí mismos, formando una cúpula natural.</p>
+	<p>Es un lugar tranquilo. Demasiado tranquilo. No hay caminos, ni estructuras visibles… solo árboles, árb<a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_lago_teletransporte.html'); location.href='initia_lago_teletransporte.html'; return false;" style="color: inherit; text-decoration: none; font-weight: inherit; font-style: inherit; font-family: inherit; font-size: inherit;">o</a>les y más árboles.</p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_superficie.html'); location.href='initia_superficie.html'; return false;">Volver a la planicie inicial</a></p>
+</body>
+</html>

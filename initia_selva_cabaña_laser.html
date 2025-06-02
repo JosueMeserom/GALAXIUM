@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Planeta Initia - Cabaña: letra incorrecta</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_cabaña_laser.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña_laser.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_cabaña_laser.html');">Borrar datos guardados</a>
+	</div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Cabaña: letra incorrecta</h1>
+	<p>Al pulsar el botón de esa letra en el teclado, un láser aparece súbitamente desde el propio panel. Notas un calor fuerte pero corto que atraviesa el aire justo frente a ti. De repente, sientes cómo tus partículas son enviadas al espacio en un destello cegador.</p>
+	<p>Afortunadamente, tu traje espacial te mantiene con vida en el vacío. Logras usar tu brazalete para llamar a la nave, que se materializa junto a ti como si hubiera estado esperando esta situación exacta.</p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); location.href='espacio.html'; return false;">Continuar en el espacio</a></p>
+</body>
+</html>

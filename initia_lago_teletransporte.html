@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Teletransporte del lago</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_lago_teletransporte.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_lago_teletransporte.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_lago_teletransporte.html');">Borrar datos guardados</a>
+	</div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	
+	<h1>Planeta Initia - Teletransporte del lago</h1>
+	<p>De repente, una vibración apenas perceptible recorre el suelo bajo tus pies. El agua frente a ti empieza a separarse en dos columnas, abriéndose en un canal limpio como cortado por una fuerza invisible. En el centro, una escalera de piedra, cubierta de musgo y humedad, emerge desde las profundidades del lago.</p>
+	<p>Sin pensarlo, bajas. A cada escalón, el agua se mantiene a los lados, formando paredes líquidas. Al fondo te espera un círculo metálico grabado con símbolos que cambian lentamente de forma. Has encontrado un teletransportador.</p>
+	<p>Una inscripción grabada en el borde del círculo advierte que el acceso se ocultará nuevamente una vez que abandones este lugar.</p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_usadoTeletransportadorAOkeanos', 'true'); localStorage.setItem('galaxium_pista_teletransAOkeanos', 'true'); localStorage.setItem('galaxium_ultimaPagina','okeanos_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); window.location.href='okeanos_superficie.html'; return false;">Usar el teletransporte</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','initia_lago.html'); location.href='initia_lago.html'; return false;">Volver al lago</a></p>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Cavernas</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_cavernas.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_cavernas.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Cavernas</h1>
+	<p>Las cavernas se extienden como un laberinto subterráneo de pasillos tallados con precisión imposible. Las paredes están cubiertas de una sustancia metálica que refleja débilmente la luz, y el suelo está lleno de cables y tuberías que serpentean como venas tecnológicas. Este lugar fue claramente un laboratorio avanzado en el pasado, pero ahora la mayoría de sus sistemas están muertos y silenciosos.</p>
+	<p>Entre los restos de equipos científicos abandonados, solo tres paneles siguen activos, brillando con una luz tenue pero constante. Sus pantallas parpadean ocasionalmente, como si estuvieran esperando interacción. El aire huele a ozono y metal oxidado, y un zumbido eléctrico apenas audible resuena por toda la caverna.</p>
+
+	<!-- Tabla 1: Colores 6x6 -->
+	<table class="tabla1">
+		<caption>Tabla 1</caption>
+		<tr>
+			<td class="color-rojo"></td>
+			<td class="color-verde"></td>
+			<td class="color-amarillo"></td>
+			<td class="color-morado"></td>
+			<td class="color-naranja"></td>
+			<td class="color-rosa"></td>
+		</tr>
+		<tr>
+			<td class="color-marron"></td>
+			<td class="color-gris"></td>
+			<td class="color-lima"></td>
+			<td class="color-coral"></td>
+			<td class="color-dorado"></td>
+			<td class="color-violeta"></td>
+		</tr>
+		<tr>
+			<td class="color-salmon"></td>
+			<td class="color-oliva"></td>
+			<td class="color-crimson"></td>
+			<td class="color-chocolate"></td>
+			<td class="color-esmeralda"></td>
+			<td class="color-magenta"></td>
+		</tr>
+		<tr>
+			<td class="color-bronce"></td>
+			<td class="color-beige"></td>
+			<td class="color-mostaza"></td>
+			<td class="color-plata"></td>
+			<td class="color-oro"></td>
+			<td class="color-perla"></td>
+		</tr>
+		<tr>
+			<td class="color-ambar"></td>
+			<td class="color-rubi"></td>
+			<td class="color-topacio"></td>
+			<td class="color-granate"></td>
+			<td class="color-escarlata"></td>
+			<td class="color-terracota"></td>
+		</tr>
+		<tr>
+			<td class="color-azul celda-azul" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_cavernas_agujero.html'); location.href='aridex_cavernas_agujero.html';"></td>
+			<td class="color-burdeos"></td>
+			<td class="color-ocre"></td>
+			<td class="color-siena"></td>
+			<td class="color-caoba"></td>
+			<td class="color-crimson"></td>
+		</tr>
+	</table>
+
+	<!-- Tabla 2: Alfabeto galáctico horizontal -->
+	<table class="tabla2">
+		<caption>Tabla 2</caption>
+		<tr>
+			<td class="galactic">A</td><td class="galactic">B</td><td class="galactic">C</td><td class="galactic">D</td><td class="galactic">E</td><td class="galactic">F</td><td class="galactic">G</td><td class="galactic">H</td><td class="galactic">I</td><td class="galactic">J</td><td class="galactic">K</td><td class="galactic">L</td><td class="galactic">M</td>
+		</tr>
+		<tr>
+			<td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td>
+		</tr>
+		<tr>
+			<td class="galactic">N</td><td class="galactic">O</td><td class="galactic">P</td><td class="galactic">Q</td><td class="galactic">R</td><td class="galactic">S</td><td class="galactic">T</td><td class="galactic">U</td><td class="galactic">V</td><td class="galactic">W</td><td class="galactic">X</td><td class="galactic">Y</td><td class="galactic">Z</td>
+		</tr>
+		<tr>
+			<td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td>
+		</tr>
+	</table>
+
+	<!-- Tabla 3: 8x8 con símbolos -->
+	<table class="tabla3">
+		<caption>Tabla 3</caption>
+		<tr>
+			<td></td><td>※</td><td></td><td>◆</td><td></td><td>♠</td><td></td><td>▲</td>
+		</tr>
+		<tr>
+			<td>♦</td><td></td><td>●</td><td></td><td>■</td><td></td><td>★</td><td></td>
+		</tr>
+		<tr>
+			<td></td><td>♣</td><td></td><td>◇</td><td></td><td>♥</td><td></td><td></td>
+		</tr>
+		<tr>
+			<td>▼</td><td></td><td>◎</td><td></td><td>♪</td><td></td><td>☆</td><td></td>
+		</tr>
+		<tr>
+			<td></td><td>♫</td><td class="celda-password">pass: ASIR</td><td></td><td></td><td>◈</td><td></td><td>♬</td>
+		</tr>
+		<tr>
+			<td>◉</td><td></td><td><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_cavernas_cuadro.html'); location.href='aridex_cavernas_cuadro.html'; return false;">⚡</a></td><td></td><td>▶</td><td></td><td>◐</td><td></td>
+		</tr>
+		<tr>
+			<td></td><td>♭</td><td></td><td>◑</td><td></td><td>♯</td><td></td><td>◒</td>
+		</tr>
+		<tr>
+			<td>◓</td><td></td><td>♮</td><td></td><td>◔</td><td></td><td>♨</td><td></td>
+		</tr>
+	</table>
+
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_superficie.html'); location.href='aridex_superficie.html'; return false;">Volver a la superficie</a></p>
+</body>
+</html>

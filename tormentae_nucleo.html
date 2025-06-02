@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tormentae - Núcleo</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/tormentae.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "tormentae_nucleo.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nucleo.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nucleo.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Tormentae - Núcleo del planeta</h1>
+	<p>El descenso a través de las densas nubes de gas ha sido una experiencia intensa. Los vientos turbulentos han zarandeado tu nave durante todo el trayecto, pero finalmente has logrado atravesar las capas atmosféricas más violentas y llegar al núcleo sólido del planeta.</p>
+	<p>El núcleo de Tormentae es sorprendentemente tranquilo comparado con la superficie. Aquí, protegido por las capas superiores de gas y tormenta, el ambiente es mucho más estable. El suelo es rocoso y firme, con formaciones cristalinas que brillan con una luz tenue y natural.</p>
+	<p>Lo que más llama tu atención es una nave espacial estrellada que domina el paisaje. Es considerablemente más grande que tu propia nave, con un diseño elegante pero claramente dañado por el impacto. Su casco presenta un distintivo color amarillo-naranja que destaca contra el entorno rocoso del núcleo. A pesar del accidente, la estructura principal parece intacta y segura para la exploración.</p>
+	<p>La nave está parcialmente enterrada en el suelo cristalino, pero la entrada principal permanece accesible. No hay signos de vida, pero tampoco de peligro inmediato. Los sistemas de emergencia parecen haber mantenido la integridad estructural durante lo que probablemente han sido años de abandono.</p>
+	<p>Los vientos constantes que circulan por el núcleo crean corrientes ascendentes naturales que facilitarían enormemente el regreso a la superficie, prácticamente sin esfuerzo energético de tu parte.</p>
+
+	<p><a href="tormentae_nave.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_nave.html');">Entrar en la nave estrellada</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','tormentae_superficie.html'); location.href='tormentae_superficie.html'; return false;">Regresar a la superficie</a></p>
+</body>
+</html>

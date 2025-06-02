@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Espacio exterior</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/espacio.css" type="text/css">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        // Se ejecuta INMEDIATAMENTE para evitar flash
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "espacio.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+    </script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" tabindex="-1" onclick="localStorage.setItem('galaxium_ultimaPagina', 'espacio.html');">Notas del explorador</a>
+        <a href="reset.html" tabindex="-1" onclick="localStorage.setItem('galaxium_ultimaPagina', 'espacio.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+    <h1>Espacio exterior</h1>
+    <p>Desde aquí puedes ver todo el sistema solar miniatura. Puedes viajar a cualquier planeta:</p>
+
+    <div class="planetas">
+        <a href="#" tabindex="1" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='aridex_superficie.html'; return false;">Aridex</a>
+        <a href="#" tabindex="2" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_superficie.html'; return false;">Volcanor</a>
+        <a href="#" tabindex="3" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='initia_superficie.html'; return false;">Initia</a>
+        <a href="#" tabindex="4" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); localStorage.removeItem('galaxium_usadoTeletransportadorAOkeanos'); localStorage.removeItem('galaxium_usadoTornadoAOkeanos'); location.href='okeanos_superficie.html'; return false;">Okeànos</a>
+        <a href="#" tabindex="5" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); localStorage.removeItem('galaxium_usadoTeletransportadorAGelora'); location.href='gelora_superficie.html'; return false;">Gelora</a>
+        <a href="#" tabindex="6" onclick="localStorage.setItem('galaxium_ultimaPagina', 'tormentae_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='tormentae_superficie.html'; return false;">Tormentae</a>
+        <a href="#" tabindex="7" style="position: absolute; left: -9999px; opacity: 0;" onclick="localStorage.setItem('galaxium_ultimaPagina', 'planeta_7.html'); location.href='planeta_7.html'; return false;">Planeta 7</a>
+    </div>
+
+    <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
+</body>
+</html>

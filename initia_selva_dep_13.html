@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initia - Bailar</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/initia.css">
+	<script>
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) { window.location.href = "tiempo_agotado.html"; }
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) { window.location.href = "index.html?redirect=true"; }
+		else if (ultimaPagina !== "initia_selva_dep_13.html") { window.location.href = ultimaPagina; }
+	</script>
+</head>
+<body>
+	<div id="hud"><div id="contador">Tiempo transcurrido: 0</div><a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_13.html');">Notas del explorador</a><a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'initia_selva_dep_13.html');">Borrar datos guardados</a></div>
+	<script>document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);</script>
+	<h1>Planeta Initia - Bailar</h1>
+	<p>Empiezas a bailar de forma errática, como en una película tribal. Crees que esto puede impresionar al monstruo, o confundirlo.</p>
+	<p>Sin embargo, tu pie se engancha en una raíz. Caes hacia atrás, das una voltereta y te golpeas con una piedra en la base del cráneo. El depredador ni se inmuta. Has muerto con estilo, eso sí.</p><p><a href="muerte.html">Continuar</a></p>
+</body>
+</html>

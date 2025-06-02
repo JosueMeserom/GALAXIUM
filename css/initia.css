@@ -1,0 +1,54 @@
+body {
+	background: linear-gradient(#b4d9c8, #7ba07b);
+	min-height: 100vh; /* Para que el gradiente se vea bien */
+	color: #001a00;
+	font-family: "Georgia", serif;
+	padding: 20px;
+	margin: 0;
+	box-sizing: border-box; /* Si se quita esto siempre saldrá la barra de scroll aunque la página sea pequeña, por el min-height */
+}
+
+/* Estilos del HUD - estética terminal */
+#hud {
+	background-color: black;
+	color: #00ff00;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+	border: 2px solid #00ff00;
+}
+
+#hud a {
+	color: #00ff00;
+	text-decoration: none;
+	margin: 0 15px;
+	font-weight: bold;
+}
+
+#hud a:hover {
+	color: #00aa00;
+	text-decoration: underline;
+}
+
+#contador {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+/* Estilos del contenido del planeta */
+h1 {
+	color: #084d2c;
+}
+a {
+	color: #0a423a;
+	font-weight: bold;
+}
+a:hover {
+	text-decoration: underline;
+}
+img {
+	display: block;
+	margin: 30px auto;
+	border: 2px solid #084d2c;
+}

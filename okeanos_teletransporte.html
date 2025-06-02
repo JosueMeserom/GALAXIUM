@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Okèanos - Teletransporte del islote</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/okeanos.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "okeanos_teletransporte.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_teletransporte.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_teletransporte.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Okèanos - Teletransporte del islote</h1>
+	<p>En el centro del diminuto islote, casi oculto entre las rocas cubiertas de algas resistentes al ácido, descubres una estructura fascinante: un teletransportador. Este dispositivo parece estar en perfecto estado de funcionamiento. Sus paneles brillan con una luz azul constante, y puedes escuchar el zumbido característico de la energía fluyendo a través de sus circuitos.</p>
+	<p>El dispositivo está claramente diseñado para el transporte intergaláctico, con coordenadas ya programadas que indican un destino específico: Gelora. Los controles son intuitivos, y todo sugiere que este teletransportador ha sido mantenido recientemente. Su estado impecable contrasta con el ambiente salvaje del océano ácido que lo rodea.</p>
+	<p>Miras hacia atrás, hacia el océano que te rodea. Las corrientes han cambiado completamente desde que llegaste surfeando, y ahora fluyen en dirección opuesta al helipuerto. No hay manera de regresar por el mismo camino. El teletransportador parece ser tu única opción para continuar tu exploración, y afortunadamente, está funcionando perfectamente.</p>
+	<p>Una placa metálica junto al dispositivo indica que el viaje a Gelora consumirá una unidad mínima de energía temporal, mucho menos que un viaje espacial convencional.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_usadoTeletransportadorAGelora', 'true'); localStorage.setItem('galaxium_pista_teletransAGelora', 'true'); localStorage.setItem('galaxium_llegadaPorTeletransportador', 'true'); localStorage.setItem('galaxium_ultimaPagina','gelora_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='gelora_superficie.html'; return false;">Usar el teletransportador hacia Gelora</a></p>
+</body>
+</html>

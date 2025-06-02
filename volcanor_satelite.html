@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Satélite</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_satelite.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_satelite.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_satelite.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Satélite</h1>
+	<p>Tu nave se desliza suavemente a través del vacío del espacio hasta llegar al satélite de Volcanor. La estructura es impresionante: una construcción de obsidiana negra pulida y diamante puro que refleja las luces de las estrellas y la lava del planeta con destellos hipnóticos. La nave aparca automáticamente enfrente de lo que claramente es un museo, ya que no hay nada más visible en toda la superficie del satélite.</p>
+	<p>Al entrar al museo, te encuentras con un vestíbulo elegante pero completamente silencioso. Los pasillos se extienden en varias direcciones, cada uno llevando a diferentes salas de exposición. Sin embargo, todas las puertas de cada exposición están cerradas a cal y canto, con sistemas de seguridad que parecen haber sido activados hace mucho tiempo. Las placas junto a las puertas indican nombres de exposiciones en varios idiomas galácticos, pero ninguna puerta responde a tus intentos de abrirla.</p>
+	<p>El museo parece estar en un estado de preservación perfecta, como si hubiera sido sellado para proteger sus tesoros de algún peligro desconocido. Las luces funcionan normalmente, y el aire está limpio y fresco, pero la sensación de abandono es palpable.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='espacio.html'; return false;">Salir al espacio</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_superficie.html'; return false;">Regresar al planeta</a></p>
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_satelite_cuadro.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_satelite_cuadro.html'; return false;">Buscar más a fondo</a></p>
+</body>
+</html>

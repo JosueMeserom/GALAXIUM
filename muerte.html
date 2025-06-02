@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sistema Reiniciando</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/terminal.css">
+	<script>
+		function reiniciar() {
+			// Resetear tiempo
+			localStorage.setItem('galaxium_unidadesTiempo', '0');
+			// Resetear depredador (vuelve a aparecer)
+			localStorage.removeItem('galaxium_depredadorFuera');
+			// Resetear teletransportes y tornado (vuelven a estar disponibles)
+			localStorage.removeItem('galaxium_usadoTeletransportadorAOkeanos');
+			localStorage.removeItem('galaxium_usadoTeletransportadorAGelora');
+			localStorage.removeItem('galaxium_usadoTornadoAOkeanos');
+			// Resetear todos los botones automáticamente
+			for (var i = 0; i < localStorage.length; i++) {
+				var key = localStorage.key(i);
+				if (key && key.startsWith('galaxium_boton')) {
+					localStorage.removeItem(key);
+					i--; // Decrementar porque removeItem cambia el índice
+				}
+			}
+			// Resetear secuencias de puzzles
+			localStorage.removeItem('galaxium_secuenciaPanelCabana');
+			localStorage.removeItem('galaxium_movimientosLaberinto');
+			// Siempre ir directamente a Initia (no verificar primera vez)
+			localStorage.setItem('galaxium_ultimaPagina', 'initia_superficie.html');
+			window.location.href = "initia_superficie.html";
+		}
+	</script>
+</head>
+<body>
+	<h1>Has muerto. Intentando reiniciar sistema...</h1>
+	
+	<div class="matrix-text">
+		<p>01001000 01100101 01101100 01110000 00100000 01101101 01100101</p>
+		<p>11010010 10110101 01001110 11100011 10010110 01110100 11001001</p>
+		<p>01110011 01111001 01110011 01110100 01100101 01101101 00100000</p>
+		<p>10101010 11110000 01010101 10011001 11100110 01001100 10110011</p>
+		<p>01100101 01110010 01110010 01101111 01110010 00100000 01101001</p>
+		<p>11001100 10101010 01010101 11110000 10011001 01001100 11100110</p>
+		<p>01101110 00100000 01110000 01110010 01101111 01100011 01100101</p>
+		<p>01100100 01110101 01110010 01100101 00100000 01110010 01100101</p>
+		<p>10110011 11001100 10101010 01010101 11110000 10011001 01001100</p>
+		<p>01101101 01101111 01110100 01100101 00100000 01110000 01110010</p>
+		<p>01101111 01100011 01100101 01100100 01110101 01110010 01100101</p>
+		<p>01001100 11100110 10110011 11001100 10101010 01010101 11110000</p>
+		<p>00100000 01100110 01100001 01101001 01101100 01100101 01100100</p>
+		<p>00101110 00101110 00101110 01110010 01100101 01110100 01110010</p>
+		<p>10011001 01001100 11100110 10110011 11001100 10101010 01010101</p>
+		<p>01111001 01101001 01101110 01100111 00100000 01110010 01100101</p>
+		<p>01100010 01101111 01101111 01110100 00101110 00101110 00101110</p>
+		<p>11110000 10011001 01001100 11100110 10110011 11001100 10101010</p>
+		<p>01010010 01100101 01100010 01101111 01101111 01110100 01101001</p>
+		<p>01101110 01100111 00100000 01110011 01111001 01110011 01110100</p>
+	</div>
+	
+	<button onclick="reiniciar()">Reiniciar</button>
+</body>
+</html>

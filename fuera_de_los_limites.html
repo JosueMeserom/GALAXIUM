@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fuera de los límites</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/terminal.css">
+    <script>
+        // Verificar si el tiempo se agotó
+        var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+        if (tiempo >= 7) {
+            window.location.href = "tiempo_agotado.html";
+        }
+
+        var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        }
+        // Para fuera_de_los_limites.html no redirigimos aunque ultimaPagina sea diferente
+    </script>
+</head>
+<body>
+    <div class="title">FUERA DE LOS LÍMITES</div>
+    
+    <div class="content">
+        <p>En el vacío del espacio, sigue el camino de la tabulación 7 veces e intenta "entrar" para ir al séptimo planeta.</p>
+        
+        <div class="button-container">
+            <button onclick="var ultima = localStorage.getItem('galaxium_ultimaPagina') || 'espacio.html'; window.location.href = ultima;">Volver</button>
+        </div>
+    </div>
+
+    <script>
+        // Activar pista solo después de que la página se haya cargado completamente
+        localStorage.setItem('galaxium_pista_tab', 'true');
+    </script>
+</body>
+</html>

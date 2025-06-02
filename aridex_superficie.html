@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/aridex.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_superficie.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+    <div id="hud">
+        <div id="contador">Tiempo transcurrido: 0</div>
+        <a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_superficie.html');">Notas del explorador</a>
+        <a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_superficie.html');">Borrar datos guardados</a>
+    </div>
+    <script>
+        document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+    </script>
+
+	<h1>Planeta Aridex</h1>
+    <p>Has aterrizado en una de las pocas zonas estables de este planeta: un llano polvoriento protegido de las incesantes tormentas de arena que azotan el resto de la superficie. El aire es seco y pesado, y una bruma dorada lo cubre todo.</p>
+    <p>A lo lejos, vislumbras signos de antiguos asentamientos... o quizá solo ruinas vencidas por el viento.</p>
+    <p>Tu nave se mantiene en equilibrio sobre el terreno rocoso. Desde aquí, puedes dirigirte a varios destinos intrigantes.</p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','espacio.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='espacio.html'; return false;">Salir al espacio</a></p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_cavernas.html'); location.href='aridex_cavernas.html'; return false;">Explorar las cavernas antiguas</a>, medio enterradas por el tiempo, con tallas extrañas en sus entradas.</p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_montaña.html'); location.href='aridex_montaña.html'; return false;">Ascender la gran montaña</a>, una estructura colosal con escarpados caminos y peldaños estrechos labrados en piedra.</p>
+    <p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','aridex_subsuelo.html'); location.href='aridex_subsuelo.html'; return false;">Descender al subsuelo</a>, a través de una escalera de metal oxidado que parece llevar a una instalación abandonada.</p>
+</body>
+</html>

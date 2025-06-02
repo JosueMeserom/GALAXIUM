@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Tercera zona</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_zona_3.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_3.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_3.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Tercera zona</h1>
+	<p>El tercer camino te lleva hasta la estructura más impresionante de todas: un domo de cristal gigantesco que se alza majestuosamente contra el cielo rojizo del planeta. El cristal es completamente transparente pero con un ligero tinte que filtra los rayos más intensos del sol volcánico. Te preguntas si será suficientemente resistente para soportar las condiciones extremas del planeta, pero supones que debe serlo si esta estructura ha permanecido aquí durante tanto tiempo aparente.</p>
+	<p>Al acercarte a la entrada, descubres que la cúpula rodea una zona residencial pequeña pero encantadora. Dentro del domo, el ambiente es completamente diferente al exterior: hay un parque muy bonito en el centro, con senderos serpenteantes, bancos de piedra tallada y lo que parecen ser jardines cuidadosamente diseñados, aunque ahora están secos y abandonados. Los pocos edificios que hay son de estilo más elegante que los de las otras zonas, con fachadas decorativas y balcones ornamentados.</p>
+	<p>Intentas abrir las puertas de los edificios residenciales, pero ninguna parece ceder. Están todas firmemente cerradas, como si sus habitantes hubieran partido con prisa pero tomándose el tiempo de asegurar bien sus hogares. Las ventanas están selladas desde el interior, y no hay manera obvia de acceder a los edificios.</p>
+	<p>En el centro del parque hay una pantalla gigantesca que parece ser de un cine al aire libre. La pantalla sigue funcionando, proyectando un mensaje en letras brillantes que contrasta con el fondo oscuro:</p>
+	
+	<div style="text-align: center; margin: 30px 0; padding: 20px; background-color: #000; color: #00FF00; font-family: monospace; font-size: 1.5em; border: 2px solid #ff7b00;">
+		GALAXIUM/*.html
+	</div>
+	
+	<p>Debajo de esa frase críptica, la pantalla muestra un dibujo que parece estar relacionado con el mensaje:</p>
+	
+	<img src="img/galactic.png" alt="Dibujo galáctico en Volcanor" style="border: 2px solid #ff7b00; margin: 20px auto; display: block; max-width: 90%; max-height: 420px; height: auto;">
+	
+	<p>La combinación del mensaje y el dibujo te deja con más preguntas que respuestas, pero claramente es información importante que deberías recordar.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_superficie.html'; return false;">Regresar a la superficie</a></p>
+
+	<script>
+		// Activar pista solo después de que la página se haya cargado completamente
+		localStorage.setItem('galaxium_pista_galactic', 'true');
+	</script>
+</body>
+</html>

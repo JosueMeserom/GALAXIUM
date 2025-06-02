@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Laberinto</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_laberinto.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Laberinto</h1>
+	<p>Te adentras en el laberinto y inmediatamente te das cuenta de la magnitud del desafío que tienes por delante. Los pasillos se extienden en todas las direcciones, formando un entramado complejo de muros de piedra que se alzan varios metros por encima de tu cabeza. El musgo luminiscente proporciona una luz fantasmal que crea sombras danzantes en las paredes, dándole al lugar un ambiente misterioso y ligeramente inquietante.</p>
+	<p>Desde aquí, puedes moverte en cuatro direcciones principales. No hay manera de volver por donde viniste una vez que empiezas a moverte; estás obligado a seguir direcciones hasta encontrar la salida o llegar a un callejón sin salida. Tendrás que confiar en tu instinto y tal vez en alguna pista que hayas encontrado anteriormente. Después de seis movimientos, sabrás si has tomado el camino correcto o te has perdido en los pasillos sin fin.</p>
+
+	<div style="text-align: center; margin: 30px 0;">
+		<p><a href="#" onclick="moverLaberinto('NORTE'); return false;">Norte</a></p>
+		<p><a href="#" onclick="moverLaberinto('OESTE'); return false;">Oeste</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="#" onclick="moverLaberinto('ESTE'); return false;">Este</a></p>
+		<p><a href="#" onclick="moverLaberinto('SUR'); return false;">Sur</a></p>
+	</div>
+
+	<script>
+		function moverLaberinto(direccion) {
+			// Obtener movimientos actuales
+			var movimientos = localStorage.getItem('galaxium_movimientosLaberinto') || '';
+
+			// Agregar nuevo movimiento
+			if (movimientos === '') {
+				movimientos = direccion;
+			} else {
+				movimientos += '-' + direccion;
+			}
+
+			// Guardar movimientos
+			localStorage.setItem('galaxium_movimientosLaberinto', movimientos);
+			localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto.html');
+
+			// Contar movimientos
+			var numMovimientos = movimientos.split('-').length;
+
+			if (numMovimientos >= 6) {
+				// Evaluar si es el camino correcto
+				if (movimientos === 'ESTE-ESTE-ESTE-ESTE-NORTE-ESTE') {
+					// Camino correcto - gastar tiempo y ir a página correcta
+					localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);
+					localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_correcto.html');
+					window.location.href = 'aridex_laberinto_correcto.html';
+				} else {
+					// Camino incorrecto - gastar tiempo y ir a página incorrecta
+					localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1);
+					localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_incorrecto.html');
+					window.location.href = 'aridex_laberinto_incorrecto.html';
+				}
+			} else {
+				// Continuar en el laberinto
+				window.location.reload();
+			}
+		}
+	</script>
+</body>
+</html>

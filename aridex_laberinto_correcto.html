@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aridex - Sala especial del laberinto</title>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/aridex.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "aridex_laberinto_correcto.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_correcto.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'aridex_laberinto_correcto.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Planeta Aridex - Sala especial del laberinto</h1>
+	<p>Después de seis movimientos precisos a través del laberinto, los pasillos se abren súbitamente hacia una sala circular completamente diferente al resto de la estructura. Las paredes aquí están hechas de un metal pulido que refleja la luz del musgo luminiscente, creando un ambiente casi etéreo. El suelo está cubierto por intrincados patrones grabados que parecen formar algún tipo de mapa o diagrama.</p>
+	<p>En el centro de la sala, sobre un pedestal de piedra tallada, se encuentra un <span style="color: red;">botón rojo</span> brillante del tamaño de tu puño. Está rodeado por un anillo de luces que parpadean en secuencia, y emite un zumbido casi imperceptible. Todo en este lugar parece haber sido diseñado para dirigir tu atención hacia este botón. Claramente, es algo importante.</p>
+	<p>Junto a una abertura en la pared que parece llevar hacia arriba, hay una placa metálica oxidada. Con letras grabadas en relieve, advierte: "ATENCIÓN: El pasadizo se sellará de nuevo automáticamente una vez que abandones esta cámara." Al mirar hacia la abertura, puedes ver unas escaleras que ascienden hacia lo que parece ser la superficie.</p>
+
+	<p><a href="#" onclick="
+		if (localStorage.getItem('galaxium_boton2') === 'true') {
+			alert('¡El botón ya se encuentra pulsado!');
+		} else {
+			localStorage.setItem('galaxium_boton2', 'true');
+			// Verificar si todos los botones están presionados
+			var boton1 = localStorage.getItem('galaxium_boton1') === 'true';
+			var boton2 = localStorage.getItem('galaxium_boton2') === 'true';
+			var boton3 = localStorage.getItem('galaxium_boton3') === 'true';
+			var boton4 = localStorage.getItem('galaxium_boton4') === 'true';
+			if (boton1 && boton2 && boton3 && boton4) {
+				localStorage.setItem('galaxium_ultimaPagina', 'destino_final.html');
+				location.href = 'destino_final.html';
+			} else {
+				alert('¡Pulsado!');
+			}
+		}
+		return false;">Pulsar el <span style="color: red;">botón rojo</span></a></p>
+
+	<p><a href="#" onclick="localStorage.removeItem('galaxium_movimientosLaberinto'); localStorage.setItem('galaxium_ultimaPagina','aridex_superficie.html'); location.href='aridex_superficie.html'; return false;">Subir por el pasadizo hacia la superficie</a></p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gelora - Edificio de nieve</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/gelora.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "gelora_derecha.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_derecha.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'gelora_derecha.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Gelora - Edificio de nieve</h1>
+	<p>Afortunadamente, el camino de la derecha resulta ser el único estable y seguro. Después de caminar cuidadosamente sobre el terreno helado, llegas a un pequeño edificio que parece estar específicamente preparado para las condiciones extremas del planeta. Sus paredes están reforzadas contra el viento y la nieve, y tiene un sistema de aislamiento térmico que es claramente visible desde el exterior.</p>
+	<p>Al entrar, inmediatamente sientes un alivio enorme. El interior está deliciosamente calentito gracias a un sistema de calefacción que funciona perfectamente. El contraste con el frío exterior es tan marcado que casi te mareas por el cambio de temperatura. Te quitas los guantes y sientes cómo la circulación regresa a tus dedos entumecidos.</p>
+	<p>De repente, escuchas un ruido suave desde una esquina del edificio. Para tu sorpresa, aparece un pequeño alienígena que se parece radicalmente a un muñeco de nieve viviente. Tiene tres esferas apiladas como cuerpo, ramitas por brazos, y dos pequeños ojos negros que brillan con inteligencia. Parece completamente amistoso y no muestra signos de agresividad.</p>
+	<p>El alienígena se acerca a ti con movimientos torpes pero entrañables, y te muestra un pergamino antiguo que tiene una lista ordenada con exactamente 20 elementos. Cada elemento contiene una secuencia de seis letras separadas por flechas, como si fueran instrucciones o direcciones de algún tipo:</p>
+	
+	<ol>
+		<li>N > E > S > O > N > E</li>
+		<li>S > E > N > O > S > E</li>
+		<li>E > N > O > S > E > N</li>
+		<li>O > S > E > N > O > S</li>
+		<li>N > O > S > E > N > O</li>
+		<li>S > N > E > O > S > N</li>
+		<li>E > O > N > S > E > O</li>
+		<li>O > E > S > N > O > E</li>
+		<li>N > S > E > O > N > S</li>
+		<li>S > O > N > E > S > O</li>
+		<li>E > S > O > N > E > S</li>
+		<li>E > E > E > E > N > E</li>
+		<li>N > E > O > S > N > E</li>
+		<li>S > N > O > E > S > N</li>
+		<li>E > S > N > O > E > S</li>
+		<li>O > N > E > S > O > N</li>
+		<li>N > O > E > S > N > O</li>
+		<li>S > E > O > N > S > E</li>
+		<li>E > N > S > O > E > N</li>
+		<li>O > S > N > E > O > S</li>
+	</ol>
+	
+	<p>El muñeco de nieve alienígena te mira expectante, como si esperara que entiendas el significado de esta lista misteriosa. Claramente, este pergamino debe ser importante para algo, aunque no está claro qué representan exactamente estas secuencias de letras.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','gelora_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='gelora_superficie.html'; return false;">Volver atrás</a></p>
+</body>
+</html>

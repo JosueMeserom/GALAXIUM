@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notas del explorador</title>
+	<meta charset="UTF-8">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		}
+		// Para notas.html no redirigimos aunque ultimaPagina sea diferente porque las notas se pueden acceder desde cualquier página
+	</script>
+	<link rel="stylesheet" href="css/terminal.css">
+</head>
+<body>
+  	<div id="hud">
+    	<div id="contador">Tiempo transcurrido: 0</div>
+    	<a href="#" onclick="var ultima = localStorage.getItem('galaxium_ultimaPagina') || 'initia_superficie.html'; window.location.href = ultima; return false;">Volver donde estabas</a>
+    	<a href="reset.html" onclick="localStorage.setItem('galaxium_vieneDeNotas', 'true');">Borrar datos guardados</a>
+ 	</div>
+  	<script>
+    document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+  	</script>
+
+	<h1>Notas del explorador</h1>
+	<p>
+		- Algunos movimientos gastan tiempo, otros no. Ir al espacio gasta 1 unidad de tiempo, y aterrizar en un planeta, otra más. Al pasar 7 unidades, el juego termina. Si muero, el juego empieza de nuevo.
+	</p>
+	<p id="galaxium_pista_Bucle" style="display: none;">
+		- El sistema no finaliza correctamente al acabarse el tiempo, en su lugar se reinicia. Cada reinicio me devuelve al mismo punto, pero conservo mis memorias. Es como estar atrapado en un bucle temporal. ¡Debo encontrar el "destino final" para poder salir!
+	</p>
+	<p id="galaxium_pista_planeta7" style="display: none;">
+		- Hay cuatro botones rojos. He de presionarlos todos dentro del mismo bucle para poder llegar al "destino final".
+	</p>
+	<p id="galaxium_pista_depredador" style="display: none;">
+		- El depredador de la selva detesta el sonido de los aplausos.
+	</p>
+	<p id="galaxium_pista_tituloTornado" style="display: none;">
+		- El título del tornado te dice una fila que debes seleccionar, no pulsar.
+	</p>
+	<p id="galaxium_pista_teletransAOkeanos" style="display: none;">
+		- Bajo el lago de Initia hay un teletransportador que lleva a Okèanos, gastando solamente 1 de tiempo.
+	</p>
+	<p id="galaxium_pista_formulario" style="display: none;">
+		- Un terminal en un agujero en las cavernas ponía "Formulario 4 7 2 10".
+	</p>
+	<p id="galaxium_pista_mareaBaja" style="display: none;">
+		- En Okèanos, cuando hay marea baja, se puede acceder a un ascensor.
+	</p>
+	<p id="galaxium_pista_surfear" style="display: none;">
+		- En Okèanos, cuando hay marea alta, se puede surfear al islote diminuto.
+	</p>
+	<p id="galaxium_pista_teletransAGelora" style="display: none;">
+		- En el islote de Okèanos hay un teletransportador que lleva a Gelora, gastando solamente 1 de tiempo.
+	</p>
+	<p id="galaxium_pista_azul" style="display: none;">
+		- En la nave estrellada del núcleo de Tormentae, vi un vídeo que mostraba un cursor poniéndose encima de un recuadro azul.
+	</p>
+	<p id="galaxium_pista_meteo" style="display: none;">
+		- En el satélite de Tormentae aprendí información meteorológica crucial: Okèanos tiene marea baja en T≤1 y marea alta en T=5. Gelora tiene ventisca en superficie en T=5 y en atmósfera en T=6, pero deshielo en superficie en T=6. La conclusión es acceder a Gelora solo por teletransporte cuando deshiele.
+	</p>
+	<div id="galaxium_pista_arboles" style="display: none;">
+		<p>- Vi este dibujo en la segunda zona de Volcanor:</p>
+		<a href="img/arboles.png" target="_blank" style="display: block; text-align: center;">
+			<img src="img/arboles.png" alt="Dibujo encontrado en Volcanor" style="border: 2px solid #ff7b00; margin: 10px auto; display: block; max-width: 200px; height: auto;">
+		</a>
+	</div>
+	<div id="galaxium_pista_galactic" style="display: none;">
+		<p>- Vi esta imagen en la tercera zona de Volcanor:</p>
+		<a href="img/galactic.png" target="_blank" style="display: block; text-align: center;">
+			<img src="img/galactic.png" alt="Imagen galáctica encontrada en Volcanor" style="border: 2px solid #ff7b00; margin: 10px auto; display: block; max-width: 300px; height: auto;">
+		</a>
+	</div>
+	<div id="galaxium_pista_cuadro1" style="display: none;">
+		<p>- Encontré este cuadro en el satélite de Volcanor:</p>
+		<a href="img/cuadro1.png" target="_blank" style="display: block; text-align: center;">
+			<img src="img/cuadro1.png" alt="Cuadro encontrado en satélite de Volcanor" style="border: 2px solid #ff7b00; margin: 10px auto; display: block; max-width: 125px; height: auto;">
+		</a>
+	</div>
+	<div id="galaxium_pista_cuadro2" style="display: none;">
+		<p>- Encontré este cuadro en la cueva de Gelora:</p>
+		<a href="img/cuadro2.png" target="_blank" style="display: block; text-align: center;">
+			<img src="img/cuadro2.png" alt="Cuadro encontrado en Gelora" style="border: 2px solid #87ceeb; margin: 10px auto; display: block; max-width: 125px; height: auto;">
+		</a>
+	</div>
+	<div id="galaxium_pista_cuadro3" style="display: none;">
+		<p>- Encontré este cuadro en una tabla en Aridex:</p>
+		<a href="img/cuadro3.png" target="_blank" style="display: block; text-align: center;">
+			<img src="img/cuadro3.png" alt="Cuadro encontrado en Aridex" style="border: 2px solid #5d2e0a; margin: 10px auto; display: block; max-width: 125px; height: auto;">
+		</a>
+	</div>
+
+	<p id="galaxium_pista_tab" style="display: none;">
+		- "En el vacío del espacio, sigue el camino de la tabulación 7 veces e intenta 'entrar' para ir al séptimo planeta."
+	</p>
+
+	<p id="galaxium_puedoPasarTiempo" style="display: none; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccc;">
+		<a href="#" onclick="
+			var nuevoTiempo = parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1;
+			localStorage.setItem('galaxium_unidadesTiempo', nuevoTiempo);
+			var ultimaPagina = localStorage.getItem('galaxium_ultimaPagina') || '';
+			if (ultimaPagina === 'gelora_superficie.html' && nuevoTiempo === 5) {
+				localStorage.setItem('galaxium_ultimaPagina', 'gelora_ventisca.html');
+				location.href = 'gelora_ventisca.html';
+			} else if (nuevoTiempo >= 7) {
+				location.href = 'tiempo_agotado.html';
+			} else {
+				location.reload();
+			}
+			return false;" style="color: #666;">Hacer pasar el tiempo</a>
+	</p>
+
+	<script>
+    // Mostrar pistas encontradas automáticamente
+    // Buscar todos los elementos que empiecen por "galaxium_pista_"
+    var elementos = document.querySelectorAll('[id^="galaxium_pista_"]');
+    for (var i = 0; i < elementos.length; i++) {
+        var elemento = elementos[i];
+        var pistaKey = elemento.id; // El id ya incluye "galaxium_pista_"
+        if (localStorage.getItem(pistaKey) === 'true') {
+            elemento.style.display = 'block';
+        }
+    }
+
+    // Mostrar enlace para hacer pasar el tiempo si está desbloqueado y no venimos de páginas de muerte
+    var ultimaPagina = localStorage.getItem('galaxium_ultimaPagina') || '';
+    var esPaginaMuerte = ultimaPagina.includes('muerte.html') ||
+                        ultimaPagina.includes('tiempo_agotado.html') ||
+                        ultimaPagina.includes('okeanos_sumergirse.html') ||
+                        ultimaPagina.includes('volcanor_lava.html') ||
+                        ultimaPagina.includes('gelora_ventisca.html') ||
+                        ultimaPagina.includes('gelora_caida.html') ||
+                        (ultimaPagina.includes('initia_selva_dep_') && !ultimaPagina.includes('initia_selva_dep_7.html'));
+
+    if (localStorage.getItem('galaxium_puedoPasarTiempo') === 'true' && !esPaginaMuerte) {
+        document.getElementById('galaxium_puedoPasarTiempo').style.display = 'block';
+    }
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Okèanos - Agua ácida</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/okeanos.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "okeanos_sumergirse.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_sumergirse.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'okeanos_sumergirse.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Okèanos - Agua ácida</h1>
+	<p>Decidido a explorar las profundidades del océano, te sumerges en las aguas cristalinas de Okèanos. Al principio, todo parece normal: el agua es clara y puedes ver el fondo marino a través de tu visor. Sin embargo, a los pocos segundos, notas que algo está terriblemente mal.</p>
+	<p>Un dolor punzante comienza a extenderse por todo tu cuerpo. Tu traje espacial, diseñado para resistir el vacío del espacio, no estaba preparado para la composición química de estas aguas. El líquido que parecía tan inocente resulta ser altamente ácido, y está corroyendo rápidamente los sellos y las juntas de tu equipo de protección.</p>
+	<p>El ácido penetra a través de las grietas que se forman en tu traje, quemando tu piel con una intensidad insoportable. Intentas nadar hacia la superficie, pero el daño ya es irreversible. Tu sistema de oxígeno falla, y el agua ácida comienza a filtrarse en tu casco. El dolor es abrumador mientras el ácido disuelve lentamente tu cuerpo.</p>
+	<p>Tu último pensamiento, antes de que la conciencia se desvanezca para siempre, es que deberías haber prestado más atención a ese extraño olor a metal que había en el aire del helipuerto. Era una advertencia que no supiste interpretar.</p>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','muerte.html'); location.href='muerte.html'; return false;">Continuar</a></p>
+</body>
+</html>

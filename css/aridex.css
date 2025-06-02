@@ -1,0 +1,222 @@
+@font-face {
+	font-family: 'SGA Smooth';
+	src: url('../font/SgaSmoothRegular.ttf') format('truetype');
+}
+
+body {
+	background: linear-gradient(#d4a574, #8b6914);
+	min-height: 100vh;
+	color: #2d1810;
+	font-family: 'Tinos', serif;
+	padding: 20px;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/* Estilos del HUD - estética terminal */
+#hud {
+	background-color: black;
+	color: #00ff00;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+	border: 2px solid #00ff00;
+}
+
+#hud a {
+	color: #00ff00;
+	text-decoration: none;
+	margin: 0 15px;
+	font-weight: bold;
+}
+
+#hud a:hover {
+	color: #00aa00;
+	text-decoration: underline;
+}
+
+#contador {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+/* Estilos del contenido del planeta árido */
+h1 {
+	color: #5d2e0a;
+}
+p {
+	font-size: 1.1rem;
+}
+a {
+	color: #8b4513;
+	font-weight: bold;
+}
+a:hover {
+	text-decoration: underline;
+}
+img {
+	display: block;
+	margin: 30px auto;
+	border: 2px solid #5d2e0a;
+}
+
+/* Estilos para las tablas */
+
+/* Tabla 1: Colores 6x6 */
+.tabla1 {
+	margin: 30px auto;
+	border-collapse: collapse;
+	border: 2px solid #5d2e0a;
+}
+
+.tabla1 caption {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	color: #5d2e0a;
+}
+
+.tabla1 td {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #5d2e0a;
+}
+
+.color-rojo { background-color: #FF0000; }
+.color-verde { background-color: #00FF00; }
+.color-amarillo { background-color: #FFFF00; }
+.color-azul { background-color: #87CEEB; }
+.color-morado { background-color: #800080; }
+.color-naranja { background-color: #FFA500; }
+.color-rosa { background-color: #FFC0CB; }
+.color-marron { background-color: #A52A2A; }
+.color-gris { background-color: #808080; }
+.color-lima { background-color: #32CD32; }
+.color-coral { background-color: #FF7F50; }
+.color-dorado { background-color: #FFD700; }
+.color-violeta { background-color: #8B008B; }
+.color-salmon { background-color: #FA8072; }
+.color-oliva { background-color: #808000; }
+.color-crimson { background-color: #DC143C; }
+.color-chocolate { background-color: #D2691E; }
+.color-esmeralda { background-color: #50C878; }
+.color-magenta { background-color: #FF00FF; }
+.color-bronce { background-color: #CD7F32; }
+.color-beige { background-color: #F5F5DC; }
+.color-plata { background-color: #C0C0C0; }
+.color-oro { background-color: #FFD700; }
+.color-perla { background-color: #F0EAD6; }
+.color-ambar { background-color: #FFBF00; }
+.color-rubi { background-color: #E0115F; }
+.color-topacio { background-color: #FFC87C; }
+.color-granate { background-color: #722F37; }
+.color-escarlata { background-color: #FF2400; }
+.color-terracota { background-color: #E2725B; }
+.color-mostaza { background-color: #FFDB58; }
+.color-burdeos { background-color: #800020; }
+.color-ocre { background-color: #CC7722; }
+.color-siena { background-color: #A0522D; }
+.color-caoba { background-color: #C04000; }
+
+/* Celda azul camuflada */
+.celda-azul {
+	cursor: default !important;
+}
+
+.celda-azul:hover {
+	cursor: default !important;
+}
+
+/* Tabla 2: Alfabeto galáctico horizontal */
+.tabla2 {
+	margin: 30px auto;
+	border-collapse: collapse;
+	border: 2px solid #5d2e0a;
+}
+
+.tabla2 caption {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	color: #5d2e0a;
+}
+
+.tabla2 td {
+	border: 1px solid #5d2e0a;
+	padding: 8px 12px;
+	text-align: center;
+	min-width: 30px;
+}
+
+.galactic {
+	font-family: 'SGA Smooth', sans-serif;
+	font-size: 1.3em;
+}
+
+/* Tabla 3: 8x8 con símbolos */
+.tabla3 {
+	margin: 30px auto;
+	border-collapse: collapse;
+	border: 2px solid #5d2e0a;
+}
+
+.tabla3 caption {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	color: #5d2e0a;
+}
+
+.tabla3 td {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #5d2e0a;
+	background-color: #808080;
+	color: #000000;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.1em;
+}
+
+.tabla3 a {
+	color: #8b4513;
+	text-decoration: underline;
+	border: none;
+	padding: 0;
+	margin: 0;
+	display: inline;
+	background: none;
+	font-size: inherit;
+}
+
+.tabla3 a:hover {
+	color: #5d2e0a;
+	background: none;
+}
+
+/* Celda con password camuflado */
+.celda-password {
+	color: #808080 !important;
+	background-color: #808080 !important;
+	cursor: default !important;
+}
+
+.celda-password::selection {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.celda-password::-moz-selection {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+/* Estilo para el cuadro de Aridex */
+.cuadro-aridex {
+	border: 2px solid #5d2e0a;
+	margin: 20px auto;
+	display: block;
+	max-width: 90%;
+	height: auto;
+}

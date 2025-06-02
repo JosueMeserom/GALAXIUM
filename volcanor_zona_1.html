@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volcanor - Primera zona</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap">
+	<link rel="stylesheet" href="css/volcanor.css">
+	<script>
+		// Verificar si el tiempo se agotó
+		var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
+		if (tiempo >= 7) {
+			window.location.href = "tiempo_agotado.html";
+		}
+
+		var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
+		if (!ultimaPagina) {
+			// Si no hay partida guardada, ir a index.html con parámetro
+			window.location.href = "index.html?redirect=true";
+		} else if (ultimaPagina !== "volcanor_zona_1.html") {
+			// Si hay partida pero no es esta página, ir a la página guardada
+			window.location.href = ultimaPagina;
+		}
+	</script>
+</head>
+<body>
+	<div id="hud">
+		<div id="contador">Tiempo transcurrido: 0</div>
+		<a href="notas.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_1.html');">Notas del explorador</a>
+		<a href="reset.html" onclick="localStorage.setItem('galaxium_ultimaPagina', 'volcanor_zona_1.html');">Borrar datos guardados</a>
+	</div>
+	<script>
+		document.getElementById('contador').textContent = "Tiempo transcurrido: " + (localStorage.getItem('galaxium_unidadesTiempo') || 0);
+	</script>
+
+	<h1>Volcanor - Primera zona</h1>
+	<p>El camino serpenteante te lleva a través de formaciones rocosas que irradian calor, hasta llegar a lo que claramente parecen ser unos cuarteles o edificios residenciales. Las estructuras están construidas con una aleación metálica resistente al calor, con gruesas paredes aislantes y sistemas de ventilación que funcionan constantemente para mantener el interior habitable. Es sorprendente descubrir que aquí vivía gente, adaptándose a las condiciones extremas de este planeta volcánico.</p>
+	<p>Los edificios están dispuestos en filas ordenadas, como un pequeño complejo militar o una colonia bien organizada. Las ventanas están selladas con cristales especiales que filtran el calor, y en el exterior se pueden ver conductos de refrigeración que serpentean por las fachadas. Todo el diseño arquitectónico grita "supervivencia" en cada detalle.</p>
+	<p>En el edificio principal, encuentras una pizarra grande colgada en lo que parece haber sido una sala de reuniones. La pizarra contiene una lista escrita con tiza blanca, detallando información sobre esta peculiar ciudad de Volcanor:</p>
+	
+	<ul>
+		<li>Originalmente fundada por mineros espaciales que buscaban extraer cristales volcánicos raros, esta ciudad se convirtió en un próspero centro de comercio intergaláctico.</li>
+		<li>Nunca se esperó que la actividad volcánica aumentara tanto, pero los habitantes desarrollaron tecnologías de refrigeración tan avanzadas que decidieron quedarse permanentemente.</li>
+		<li>Curiosamente, la ciudad tenía su propio sistema de transporte subterráneo que utilizaba túneles de lava enfriada para moverse rápidamente entre distritos.</li>
+		<li>Eventualmente, cuando los cristales se agotaron, los habitantes se dedicaron a la investigación volcánica, convirtiéndose en los mejores expertos en supervivencia en planetas de alta temperatura de toda la galaxia.</li>
+	</ul>
+	
+	<p><a href="#" onclick="localStorage.setItem('galaxium_ultimaPagina','volcanor_superficie.html'); localStorage.setItem('galaxium_unidadesTiempo', parseInt(localStorage.getItem('galaxium_unidadesTiempo')||'0')+1); location.href='volcanor_superficie.html'; return false;">Regresar a la superficie</a></p>
+</body>
+</html>
