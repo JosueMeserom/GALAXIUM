@@ -14,6 +14,15 @@
 
         var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
 
+        // Verificar redirecciones ANTES de verificar ventisca
+        if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
+            window.location.href = "index.html?redirect=true";
+        } else if (ultimaPagina !== "gelora_superficie.html" && ultimaPagina !== "espacio.html") {
+            // Si hay partida pero no es esta página ni viene del espacio, ir a la página guardada
+            window.location.href = ultimaPagina;
+        }
+
         // Verificar si llegó por teletransportador
         var llegadaPorTeletransportador = localStorage.getItem("galaxium_llegadaPorTeletransportador") === 'true';
 
@@ -23,16 +32,10 @@
         // - Tiempo 6 por teletransportador: Superficie segura (ventisca arriba)
         if (tiempo === 5) {
             window.location.href = "gelora_ventisca.html";
-        } else if (tiempo === 6 && ultimaPagina === "espacio.html") {
+        } else if (tiempo === 6 && !llegadaPorTeletransportador) {
+            // Si tiempo es 6 y NO llegó por teletransportador, debe ser ventisca
+            // (porque la única forma segura de llegar con tiempo 6 es por teletransportador)
             window.location.href = "gelora_ventisca.html";
-        }
-
-        if (!ultimaPagina) {
-            // Si no hay partida guardada, ir a index.html con parámetro
-            window.location.href = "index.html?redirect=true";
-        } else if (ultimaPagina !== "gelora_superficie.html") {
-            // Si hay partida pero no es esta página, ir a la página guardada
-            window.location.href = ultimaPagina;
         }
 
         // Limpiar la variable temporal después de todas las verificaciones
@@ -59,6 +62,7 @@
 
     <!-- Párrafo teletransportado (oculto por defecto) -->
     <p id="texto_teletransportado" style="display: none;">Acabas de materializarte sobre la superficie helada, aún con la sensación de zumbido en los oídos y un frío penetrante que se filtra a través de tu traje. El teletransportador que te ha traído hasta aquí parpadea brevemente antes de apagarse, cubierto por una fina capa de escarcha. El aire es tan frío que puedes ver tu respiración condensarse instantáneamente. El resto del terreno está formado por un abismo de cristales de agua congelada, que puede ceder bajo tu peso. Aun así, con el brazalete llamas a tu nave, que reaparece en un lugar estable.</p>
+
     <p>Al salir, observas tres caminos posibles para explorar: izquierda, centro y derecha. Sin embargo, las lecturas son poco claras y parecen igual de arriesgados. La ruta derecha parece ser la más segura... aunque no lo sabes aún.</p>
     <p>Además, a lo lejos, una cueva con la entrada casi completamente congelada llama la atención.</p>
 
@@ -76,38 +80,22 @@
     <script>
         // Ejecutar después de que la página cargue completamente
         window.addEventListener('DOMContentLoaded', function() {
-            // DEBUG: Mostrar variables en consola
-            console.log('=== DEBUG GELORA SUPERFICIE ===');
-            console.log('Tiempo:', localStorage.getItem('galaxium_unidadesTiempo'));
-            console.log('Última página:', localStorage.getItem('galaxium_ultimaPagina'));
-            console.log('usadoTeletransportadorAGelora:', localStorage.getItem('galaxium_usadoTeletransportadorAGelora'));
-            console.log('llegadaPorTeletransportador:', localStorage.getItem('galaxium_llegadaPorTeletransportador'));
-
             // Verificar si llegó por teletransporte (usar la variable persistente)
             var teleported = localStorage.getItem('galaxium_usadoTeletransportadorAGelora') === 'true';
-            console.log('Variable teleported:', teleported);
 
             if (teleported) {
-                console.log('MOSTRANDO TEXTO DE TELETRANSPORTE');
                 // Mostrar texto de teletransporte y ocultar texto de nave
                 document.getElementById('texto_nave').style.display = 'none';
                 document.getElementById('texto_teletransportado').style.display = 'block';
-            } else {
-                console.log('MOSTRANDO TEXTO DE NAVE');
             }
 
             // Mostrar párrafos y enlaces en función del tiempo
             let tiempo = parseInt(localStorage.getItem('galaxium_unidadesTiempo') || '0');
-            console.log('Tiempo parseado:', tiempo);
 
             if (tiempo === 6) {
-                console.log('TIEMPO ES 6 - MOSTRANDO CUEVA');
                 document.getElementById('gelora_cueva_desc').style.display = 'block';
                 document.getElementById('gelora_cueva').style.display = 'block';
-            } else {
-                console.log('TIEMPO NO ES 6 - NO MOSTRANDO CUEVA');
             }
-            console.log('=== FIN DEBUG ===');
         });
     </script>
 </body>
