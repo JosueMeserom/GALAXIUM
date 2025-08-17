@@ -14,24 +14,27 @@
         // Se ejecuta INMEDIATAMENTE para evitar flash
         var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
         if (!ultimaPagina) {
-            // Si no hay partida guardada, ir a index.html con parámetro
             window.location.href = "index.html?redirect=true";
         } else if (ultimaPagina !== "espacio.html") {
-            // Si hay partida pero no es esta página, ir a la página guardada
             window.location.href = ultimaPagina;
         }
     </script>
     
     <!-- CSS de simple-keyboard -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard/build/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard/build/css/index.css">
 
-<!-- (Opcional) forzar que el teclado quede pegado abajo y evitar que tape contenido -->
-<style>
-  .simple-keyboard { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; }
-  /* reserva espacio en la página para que el teclado no oculte campos importantes */
-  body { padding-bottom: 280px; /* ajusta según la altura del teclado */ }
-</style>
-    
+    <style>
+      .simple-keyboard { 
+        position: fixed; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        z-index: 9999; 
+      }
+      body { 
+        padding-bottom: 280px; /* reserva espacio para que no tape contenido */ 
+      }
+    </style>
 </head>
 <body>
     <div id="hud">
@@ -58,53 +61,67 @@
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
 
-<!-- contenedor del teclado -->
-<div id="keyboard" class="simple-keyboard"></div>
+    <!-- contenedor del teclado -->
+    <div id="keyboard" class="simple-keyboard"></div>
 
-<!-- JS de simple-keyboard -->
-<script src="https://cdn.jsdelivr.net/npm/simple-keyboard/build/index.js"></script>
+    <!-- JS de simple-keyboard -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard/build/index.js"></script>
 
-<script>
-  // Inicialización mínima que hace que el teclado funcione con cualquier input/textarea/contenteditable
-  const Keyboard = window.SimpleKeyboard.default;
-  const keyboard = new Keyboard({
-    onChange: input => {
-      if (!activeElement) return;
-      if (activeElement.isContentEditable) activeElement.textContent = input;
-      else activeElement.value = input;
-    },
-    onKeyPress: button => {
-      if (!activeElement) return;
-      if (button === "{enter}") {
-        if (activeElement.form) (activeElement.form.requestSubmit ? activeElement.form.requestSubmit() : activeElement.form.submit());
-      } else if (button === "{tab}") {
-        // emular Tab
-        const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
-          .filter(el => !el.disabled && el.offsetParent !== null);
-        const i = Math.max(0, focusables.indexOf(activeElement));
-        const next = focusables[(i + 1) % focusables.length];
-        next && next.focus();
-      }
-    }
-  });
+    <script>
+      const Keyboard = window.SimpleKeyboard.default;
 
-  // Seguimiento del elemento con foco
-  let activeElement = null;
-  document.addEventListener('focusin', e => {
-    if (e.target.matches('input, textarea, [contenteditable="true"]')) {
-      activeElement = e.target;
-      const val = activeElement.isContentEditable ? activeElement.textContent : activeElement.value || '';
-      keyboard.setInput(val);
-    } else {
-      activeElement = null;
-    }
-  });
+      const keyboard = new Keyboard({
+        layout: {
+          'default': [
+            "º 1 2 3 4 5 6 7 8 9 0 ' ¡ {bksp}",
+            "q w e r t y u i o p ` + {tab}",
+            "a s d f g h j k l ñ ´ ç {enter}",
+            "< z x c v b n m , . - {shift}",
+            "{space}"
+          ]
+        },
+        display: {
+          "{bksp}": "⌫",
+          "{enter}": "Intro",
+          "{shift}": "Mayús",
+          "{space}": "Espacio",
+          "{tab}": "Tab"
+        },
+        onChange: input => {
+          if (!activeElement) return;
+          if (activeElement.isContentEditable) activeElement.textContent = input;
+          else activeElement.value = input;
+        },
+        onKeyPress: button => {
+          if (!activeElement) return;
 
-  // Si quieres que el teclado esté visible siempre, ya está; si prefieres sólo al enfocar,
-  // añade/quita una clase CSS en focusin/focusout para mostrar/ocultar.
-</script>
-    
+          if (button === "{enter}") {
+            if (activeElement.form) {
+              activeElement.form.requestSubmit ? activeElement.form.requestSubmit() : activeElement.form.submit();
+            } else {
+              activeElement.click && activeElement.click();
+            }
+          } else if (button === "{tab}") {
+            const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+              .filter(el => !el.disabled && el.offsetParent !== null);
+            const i = Math.max(0, focusables.indexOf(activeElement));
+            const next = focusables[(i + 1) % focusables.length];
+            next && next.focus();
+          }
+        }
+      });
+
+      // Seguimiento del elemento enfocado
+      let activeElement = null;
+      document.addEventListener('focusin', e => {
+        if (e.target.matches('input, textarea, [contenteditable="true"], a[href], button')) {
+          activeElement = e.target;
+          const val = activeElement.isContentEditable ? activeElement.textContent : activeElement.value || '';
+          keyboard.setInput(val);
+        } else {
+          activeElement = null;
+        }
+      });
+    </script>
 </body>
-
 </html>
-
