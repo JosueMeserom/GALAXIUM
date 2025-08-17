@@ -21,6 +21,17 @@
             window.location.href = ultimaPagina;
         }
     </script>
+    
+    <!-- CSS de simple-keyboard -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard/build/css/index.css">
+
+<!-- (Opcional) forzar que el teclado quede pegado abajo y evitar que tape contenido -->
+<style>
+  .simple-keyboard { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; }
+  /* reserva espacio en la página para que el teclado no oculte campos importantes */
+  body { padding-bottom: 280px; /* ajusta según la altura del teclado */ }
+</style>
+    
 </head>
 <body>
     <div id="hud">
@@ -47,40 +58,53 @@
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
 
-<button id="tabBtn">Tab</button>
-<button id="enterBtn">Intro</button>
+<!-- contenedor del teclado -->
+<div id="keyboard" class="simple-keyboard"></div>
+
+<!-- JS de simple-keyboard -->
+<script src="https://cdn.jsdelivr.net/npm/simple-keyboard/build/index.js"></script>
 
 <script>
-  // Emular Tab real: mover foco al siguiente elemento enfocable
-  document.getElementById("tabBtn").addEventListener("click", () => {
-    let active = document.activeElement;
-    let focusables = Array.from(
-      document.querySelectorAll(
-        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      )
-    ).filter(el => !el.disabled && el.offsetParent !== null); // visibles y no deshabilitados
-
-    let idx = focusables.indexOf(active);
-    let next = focusables[(idx + 1) % focusables.length];
-    next.focus();
-  });
-
-  // Emular Enter real: disparar acción en el elemento activo
-  document.getElementById("enterBtn").addEventListener("click", () => {
-    let active = document.activeElement;
-    if (!active) return;
-
-    if (active.tagName === "INPUT" && active.type !== "button") {
-      // Simular submit si el input está dentro de un formulario
-      let form = active.form;
-      if (form) form.requestSubmit ? form.requestSubmit() : form.submit();
-    } else {
-      // Simular click en botones, enlaces u otros elementos
-      active.click();
+  // Inicialización mínima que hace que el teclado funcione con cualquier input/textarea/contenteditable
+  const Keyboard = window.SimpleKeyboard.default;
+  const keyboard = new Keyboard({
+    onChange: input => {
+      if (!activeElement) return;
+      if (activeElement.isContentEditable) activeElement.textContent = input;
+      else activeElement.value = input;
+    },
+    onKeyPress: button => {
+      if (!activeElement) return;
+      if (button === "{enter}") {
+        if (activeElement.form) (activeElement.form.requestSubmit ? activeElement.form.requestSubmit() : activeElement.form.submit());
+      } else if (button === "{tab}") {
+        // emular Tab
+        const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+          .filter(el => !el.disabled && el.offsetParent !== null);
+        const i = Math.max(0, focusables.indexOf(activeElement));
+        const next = focusables[(i + 1) % focusables.length];
+        next && next.focus();
+      }
     }
   });
+
+  // Seguimiento del elemento con foco
+  let activeElement = null;
+  document.addEventListener('focusin', e => {
+    if (e.target.matches('input, textarea, [contenteditable="true"]')) {
+      activeElement = e.target;
+      const val = activeElement.isContentEditable ? activeElement.textContent : activeElement.value || '';
+      keyboard.setInput(val);
+    } else {
+      activeElement = null;
+    }
+  });
+
+  // Si quieres que el teclado esté visible siempre, ya está; si prefieres sólo al enfocar,
+  // añade/quita una clase CSS en focusin/focusout para mostrar/ocultar.
 </script>
     
 </body>
 
 </html>
+
