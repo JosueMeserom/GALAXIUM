@@ -4,27 +4,23 @@
     <title>Espacio exterior</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/espacio.css" type="text/css">
-
     <script>
+        // Verificar si el tiempo se agotó
         var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
         if (tiempo >= 7) {
             window.location.href = "tiempo_agotado.html";
         }
+
+        // Se ejecuta INMEDIATAMENTE para evitar flash
         var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
         if (!ultimaPagina) {
+            // Si no hay partida guardada, ir a index.html con parámetro
             window.location.href = "index.html?redirect=true";
         } else if (ultimaPagina !== "espacio.html") {
+            // Si hay partida pero no es esta página, ir a la página guardada
             window.location.href = ultimaPagina;
         }
     </script>
-
-    <!-- simple-keyboard -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
-
-    <style>
-      .simple-keyboard { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; }
-      body { padding-bottom: 280px; }
-    </style>
 </head>
 <body>
     <div id="hud">
@@ -51,42 +47,26 @@
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
 
-    <div id="keyboard" class="simple-keyboard"></div>
+    <!-- Añadir al final del <body>, antes de </body> -->
+<div style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; padding: 10px; display: flex; gap: 10px; z-index: 9999;">
+  <button onclick="
+    const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])'))
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    const i = focusables.indexOf(document.activeElement);
+    const next = focusables[(i + 1) % focusables.length];
+    next && next.focus();
+  ">Tab</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
-    <script>
-      const Keyboard = window.SimpleKeyboard.default;
-      const keyboard = new Keyboard({
-        layout: {
-          default: [
-            "` 1 2 3 4 5 6 7 8 9 0 ' ¡ {bksp}",
-            "{tab} q w e r t y u i o p ` +",
-            "{lock} a s d f g h j k l ñ ´ {enter}",
-            "{shift} < z x c v b n m , . - {shift}",
-            ".com @ {space}"
-          ]
-        },
-        display: {
-          "{bksp}": "⌫",
-          "{enter}": "Intro",
-          "{tab}": "Tab",
-          "{lock}": "⇪",
-          "{shift}": "⇧",
-          "{space}": "␣"
-        },
-        onKeyPress: button => {
-          if(button === "{tab}"){
-            const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
-              .filter(el => !el.disabled && el.offsetParent !== null);
-            const i = focusables.indexOf(document.activeElement);
-            const next = focusables[(i + 1) % focusables.length];
-            next && next.focus();
-          }
-          if(button === "{enter}"){
-            document.activeElement.click?.();
-          }
-        }
-      });
-    </script>
+  <button onclick="
+    if(document.activeElement){
+      if(document.activeElement.tagName === 'A' || document.activeElement.tagName === 'BUTTON'){
+        document.activeElement.click();
+      } else if(document.activeElement.form){
+        document.activeElement.form.requestSubmit?.() || document.activeElement.form.submit();
+      }
+    }
+  ">Intro</button>
+</div>
+    
 </body>
 </html>
