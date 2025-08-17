@@ -47,26 +47,16 @@
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
 
-    <!-- Añadir al final del <body>, antes de </body> -->
-<div style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; padding: 10px; display: flex; gap: 10px; z-index: 9999;">
-  <button onclick="
-    const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])'))
-      .filter(el => !el.disabled && el.offsetParent !== null);
-    const i = focusables.indexOf(document.activeElement);
-    const next = focusables[(i + 1) % focusables.length];
-    next && next.focus();
-  ">Tab</button>
-
-  <button onclick="
-    if(document.activeElement){
-      if(document.activeElement.tagName === 'A' || document.activeElement.tagName === 'BUTTON'){
-        document.activeElement.click();
-      } else if(document.activeElement.form){
-        document.activeElement.form.requestSubmit?.() || document.activeElement.form.submit();
-      }
-    }
-  ">Intro</button>
-</div>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(isMobile){
+      document.querySelector('[href="#"][onclick*="planeta_7"]').style.position = "static";
+      document.querySelector('[href="#"][onclick*="planeta_7"]').style.opacity = "1";
+        }
+      });
+    </script>
     
 </body>
 </html>
+
