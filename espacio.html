@@ -4,14 +4,12 @@
     <title>Espacio exterior</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/espacio.css" type="text/css">
+
     <script>
-        // Verificar si el tiempo se agotó
         var tiempo = parseInt(localStorage.getItem("galaxium_unidadesTiempo") || "0");
         if (tiempo >= 7) {
             window.location.href = "tiempo_agotado.html";
         }
-
-        // Se ejecuta INMEDIATAMENTE para evitar flash
         var ultimaPagina = localStorage.getItem("galaxium_ultimaPagina");
         if (!ultimaPagina) {
             window.location.href = "index.html?redirect=true";
@@ -19,21 +17,13 @@
             window.location.href = ultimaPagina;
         }
     </script>
-    
-    <!-- CSS de simple-keyboard -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard/build/css/index.css">
+
+    <!-- simple-keyboard -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
 
     <style>
-      .simple-keyboard { 
-        position: fixed; 
-        left: 0; 
-        right: 0; 
-        bottom: 0; 
-        z-index: 9999; 
-      }
-      body { 
-        padding-bottom: 280px; /* reserva espacio para que no tape contenido */ 
-      }
+      .simple-keyboard { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; }
+      body { padding-bottom: 280px; }
     </style>
 </head>
 <body>
@@ -61,65 +51,40 @@
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
 
-    <!-- contenedor del teclado -->
     <div id="keyboard" class="simple-keyboard"></div>
 
-    <!-- JS de simple-keyboard -->
-    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard/build/index.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
     <script>
       const Keyboard = window.SimpleKeyboard.default;
-
       const keyboard = new Keyboard({
         layout: {
-          'default': [
-            "º 1 2 3 4 5 6 7 8 9 0 ' ¡ {bksp}",
-            "q w e r t y u i o p ` + {tab}",
-            "a s d f g h j k l ñ ´ ç {enter}",
-            "< z x c v b n m , . - {shift}",
-            "{space}"
+          default: [
+            "` 1 2 3 4 5 6 7 8 9 0 ' ¡ {bksp}",
+            "{tab} q w e r t y u i o p ` +",
+            "{lock} a s d f g h j k l ñ ´ {enter}",
+            "{shift} < z x c v b n m , . - {shift}",
+            ".com @ {space}"
           ]
         },
         display: {
           "{bksp}": "⌫",
           "{enter}": "Intro",
-          "{shift}": "Mayús",
-          "{space}": "Espacio",
-          "{tab}": "Tab"
-        },
-        onChange: input => {
-          if (!activeElement) return;
-          if (activeElement.isContentEditable) activeElement.textContent = input;
-          else activeElement.value = input;
+          "{tab}": "Tab",
+          "{lock}": "⇪",
+          "{shift}": "⇧",
+          "{space}": "␣"
         },
         onKeyPress: button => {
-          if (!activeElement) return;
-
-          if (button === "{enter}") {
-            if (activeElement.form) {
-              activeElement.form.requestSubmit ? activeElement.form.requestSubmit() : activeElement.form.submit();
-            } else {
-              activeElement.click && activeElement.click();
-            }
-          } else if (button === "{tab}") {
+          if(button === "{tab}"){
             const focusables = Array.from(document.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'))
               .filter(el => !el.disabled && el.offsetParent !== null);
-            const i = Math.max(0, focusables.indexOf(activeElement));
+            const i = focusables.indexOf(document.activeElement);
             const next = focusables[(i + 1) % focusables.length];
             next && next.focus();
           }
-        }
-      });
-
-      // Seguimiento del elemento enfocado
-      let activeElement = null;
-      document.addEventListener('focusin', e => {
-        if (e.target.matches('input, textarea, [contenteditable="true"], a[href], button')) {
-          activeElement = e.target;
-          const val = activeElement.isContentEditable ? activeElement.textContent : activeElement.value || '';
-          keyboard.setInput(val);
-        } else {
-          activeElement = null;
+          if(button === "{enter}"){
+            document.activeElement.click?.();
+          }
         }
       });
     </script>
