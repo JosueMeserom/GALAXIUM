@@ -46,5 +46,41 @@
     </div>
 
     <img src="img/sistema_solar.png" alt="Sistema solar miniatura" style="max-width: 90%; height: auto;">
+
+<button id="tabBtn">Tab</button>
+<button id="enterBtn">Intro</button>
+
+<script>
+  // Emular Tab real: mover foco al siguiente elemento enfocable
+  document.getElementById("tabBtn").addEventListener("click", () => {
+    let active = document.activeElement;
+    let focusables = Array.from(
+      document.querySelectorAll(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(el => !el.disabled && el.offsetParent !== null); // visibles y no deshabilitados
+
+    let idx = focusables.indexOf(active);
+    let next = focusables[(idx + 1) % focusables.length];
+    next.focus();
+  });
+
+  // Emular Enter real: disparar acción en el elemento activo
+  document.getElementById("enterBtn").addEventListener("click", () => {
+    let active = document.activeElement;
+    if (!active) return;
+
+    if (active.tagName === "INPUT" && active.type !== "button") {
+      // Simular submit si el input está dentro de un formulario
+      let form = active.form;
+      if (form) form.requestSubmit ? form.requestSubmit() : form.submit();
+    } else {
+      // Simular click en botones, enlaces u otros elementos
+      active.click();
+    }
+  });
+</script>
+    
 </body>
+
 </html>
